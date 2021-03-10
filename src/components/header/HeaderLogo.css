@@ -15,7 +15,7 @@
 
 .logo-text {
   min-width: 400px;
-  margin-top: 25px;
+  margin-top: 20px;
   margin-left: 10px;
 }
 
@@ -23,7 +23,7 @@
   height: 40px;
   display: flex;
   justify-content: flex-start;
-  font-size: 30px;
+  font-size: 34px;
   color: #aaa;
 }
 
@@ -37,4 +37,5 @@
   display: flex;
   justify-content: center;
   width: 8px;
+  color: #c8b;
 }

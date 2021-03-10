@@ -1,65 +1,151 @@
 import { Component } from 'react';
 
-// TODO Experiment class, rewrite to be better.
+const FIRST_NAME = "DEVIN";
+const LAST_NAME = "VALKO";
+const NAME = `${FIRST_NAME}${LAST_NAME}`;
 
-// TODO Variable Timer
-// Not always the same 2000 between alters.
-// The first 1.5 seconds, every alter is like 50.
-
-function randomIndex(length) {
-  return Math.trunc(Math.random() * length);
-}
+// TODO Site Load: glitch to DEVIN.VALKO, wait; glitch to KONDK.IVVDN
+// First mouse-over consumes this process.
 
 export class GlitchName extends Component {
-  letters = "DEVINVALKO";
-  changeTime = 1000;
-  size = "20px";
 
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
     this.state = {
-      firstname: "DEIVN",
-      lastname: "VKALO"
-    };
-    setTimeout(this.changeLetter, this.changeTime);
-  }
-
-  randomLetter = () => {
-    return this.letters[randomIndex(this.letters.length)];
-  }
-
-  changeLetter = () => {
-    const firstNotLast = (Math.random() < .5);
-    let nameIdx, nameStr;
-
-    nameStr = (firstNotLast) ? this.state.firstname : this.state.lastname;
-    nameIdx = randomIndex(nameStr.length);
-    nameStr = `${nameStr.slice(0, nameIdx)}${this.randomLetter()}${nameStr.slice(nameIdx + 1)}`;
-
-    if (firstNotLast) {
-      this.setState({ firstname: nameStr });
-    } else {
-      this.setState({ lastname: nameStr });
+      stabilizeText: props.stabilizeText
     }
+  }
 
-    setTimeout(this.changeLetter, this.changeTime);
+  impulseOn = () => {
+    this.setState({stabilizeText: true});
+  }
+
+  impulseOff = () => {
+    this.setState({stabilizeText: false});
   }
 
   render() {
     const li = [];
-    const name = `${this.state.firstname}.${this.state.lastname}`;
+    const name = `${FIRST_NAME}.${LAST_NAME}`;
+    
     for (let i = 0; i < name.length; i++) {
-      if (name.charAt(i) !== '.') {
-        li.push(<span className="glitch-text-letter">{name.charAt(i)}</span>);
+      if (name[i] !== '.') {
+        li.push(
+          <span key={`glitch-letter_${i}`} className="glitch-text-letter">
+            <GlitchLetter
+              actual={name[i]}
+              changeCount={10+i*2}
+              stabilize={this.state.stabilizeText} />
+          </span>
+        )
       } else {
-        li.push(<span className="glitch-text-separator">.</span>);
+        li.push(
+          <span key={`glitch-letter_${i}`} className="glitch-text-letter glitch-text-separator">
+            .
+          </span>
+        )
       }
     }
 
     return (
-      <div className="glitch-text">
+      <div
+        className="glitch-text"
+        onMouseEnter={this.impulseOn}
+        onMouseLeave={this.impulseOff}
+      >
         {li}
       </div>
     );
+  }
+}
+
+class GlitchLetter extends Component {
+
+  _shortTimer = 40;
+  _longTimer = 1600;
+  _timerId;
+
+  actual;
+  possible;
+  changeCount;
+  maxChangeCount;
+  stabilize;
+
+  constructor(props) {
+    super(props);
+    this.state = {
+      render: props.actual,
+      color: "#c8b",
+    };
+
+    this.actual = props.actual;
+    this.possible = NAME;
+    this.changeCount = props.changeCount || 10;
+    this.maxChangeCount = this.changeCount;
+    this.stabilize = props.stabilize || false;
+  }
+
+  componentDidMount = () => {
+    this.update();
+  }
+
+  componentDidUpdate = (prevProps) => {
+    if (prevProps.stabilize !== this.props.stabilize) {
+      this.changeCount = this.maxChangeCount;
+      this.stabilize = this.props.stabilize;
+      clearTimeout(this._timerId);
+      this.update();
+    }
+  }
+
+  componentWillUnmount = () => {
+    clearTimeout(this._timerId);
+  }
+
+  wait = (time, deviation) => {
+    return (time - time*deviation) + (time*deviation*2*Math.random());
+  }
+
+  shortTimer = () => {
+    return this.wait(this._shortTimer, 0.05);
+  }
+
+  longTimer = () => {
+    return this.wait(this._longTimer, 0.25);
+  }
+
+  randomLetter = () => {
+    const idx = Math.floor(Math.random()*this.possible.length);
+    return this.possible[idx];
+  }
+
+  update = () => {
+    if (this.stabilize && this.changeCount <= 0) {
+      this.setState({render: this.actual});
+      return;
+    } else {
+      this.setState({
+        render: this.randomLetter(),
+        color: (Math.random() < 0.2) ? '#ebd' : '#aaa'
+      });
+      --this.changeCount;
+    }
+
+    if (this.changeCount >= 0)
+      this._timerId = setTimeout(this.update, this.shortTimer());
+    else
+      this._timerId = setTimeout(this.update, this.longTimer());
+
+    // TODO SetTimeout seems to operate a bit outside the react live-update cycle.
+    // Try this:
+    //   write console.log('yes')
+    //   see that each letter posts 'yes' to the console on update.
+    //   remove console.log('yes')
+    //   see that each letter still posts 'yes' to the console, but
+    //     no longer(?) affects the live website. It becomes an orphan.
+  }
+
+  render() {
+    return <span style={{color: this.state.color}}>{this.state.render}</span>;
   }
 }

@@ -1,6 +1,5 @@
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import { Background } from './components/Background';
-import { HeaderLogo } from './components/header/HeaderLogo';
 import Navbar from './components/header/Navbar';
 
 function App() {
