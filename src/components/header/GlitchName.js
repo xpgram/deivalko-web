@@ -6,6 +6,10 @@ const NAME = `${FIRST_NAME}${LAST_NAME}`;
 
 // TODO Site Load: glitch to DEVIN.VALKO, wait; glitch to KONDK.IVVDN
 // First mouse-over consumes this process.
+// TODO Define color palette somewhere so I don't have to go needle searching.
+// TODO Guarantee at least 2 letters are pink at all times.
+// 1 letter per name, maybe.
+// Glitch name can do this with props, I guess.
 
 export class GlitchName extends Component {
 
