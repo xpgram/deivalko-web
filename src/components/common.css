@@ -1,0 +1,25 @@
+
+.debug-border {
+  border: 2px solid purple;
+}
+
+.float-left {
+  float: left;
+}
+
+.float-right {
+  float: right;
+}
+
+.text-right-adjusted {
+  text-align: right;
+}
+
+body::-webkit-scrollbar {
+  display: none;
+}
+
+body {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}

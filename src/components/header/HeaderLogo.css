@@ -1,0 +1,40 @@
+
+.navbar-logo, .navbar-logo:focus, .navbar-logo:hover, .navbar-logo:visited, .navbar-logo:link, .navbar-logo:active {
+  text-decoration: none;
+}
+
+.logo-container {
+  min-width: 360px;
+  display: flex;
+  align-content: center;
+}
+
+.logo-image {
+  width: 60px;
+}
+
+.logo-text {
+  min-width: 400px;
+  margin-top: 25px;
+  margin-left: 10px;
+}
+
+.glitch-text {
+  height: 40px;
+  display: flex;
+  justify-content: flex-start;
+  font-size: 30px;
+  color: #aaa;
+}
+
+.glitch-text-letter {
+  display: flex;
+  justify-content: center;
+  width: 32px;
+}
+
+.glitch-text-separator {
+  display: flex;
+  justify-content: center;
+  width: 8px;
+}
