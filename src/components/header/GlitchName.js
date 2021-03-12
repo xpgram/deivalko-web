@@ -130,7 +130,7 @@ class GlitchLetter extends Component {
     } else {
       this.setState({
         render: this.randomLetter(),
-        color: (Math.random() < 0.2) ? '#ebd' : '#aaa'
+        color: (Math.random() < 0.2) ? '#ebd' : '#bbb'
       });
       --this.changeCount;
     }

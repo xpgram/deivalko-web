@@ -8,8 +8,10 @@ export class HeaderLogo extends Component {
     return (
       <div className="logo-container">
         <img src={logo} className="logo-image" />
-        <div className="logo-text">
-          <GlitchName />
+        <div>
+          <div className="logo-text">
+            <GlitchName className="logo-text" />
+          </div>
         </div>
       </div>
     );

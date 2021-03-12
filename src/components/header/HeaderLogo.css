@@ -4,9 +4,11 @@
 }
 
 .logo-container {
-  min-width: 360px;
+  min-width: 400px;
   display: flex;
   align-content: center;
+  margin-top: 10px;
+  margin-left: 5px;
 }
 
 .logo-image {
@@ -15,8 +17,8 @@
 
 .logo-text {
   min-width: 400px;
-  margin-top: 20px;
-  margin-left: 10px;
+  position: absolute;
+  transform: translate(1.5%, 53%);
 }
 
 .glitch-text {
@@ -24,13 +26,17 @@
   display: flex;
   justify-content: flex-start;
   font-size: 34px;
-  color: #aaa;
+  color: #bbb;
 }
 
 .glitch-text-letter {
   display: flex;
   justify-content: center;
   width: 32px;
+}
+
+.glitch-text-special-letter {
+  color: #ebd;
 }
 
 .glitch-text-separator {
