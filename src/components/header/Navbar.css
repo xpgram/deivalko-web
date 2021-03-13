@@ -2,12 +2,13 @@
 .navbar {
   display: flex;
   justify-content: center;
-  width: 100%;
-
-  font-size: 1.2rem;
   position: fixed;
-  top: 0;
+  width: 100%;
   z-index: 999;
+
+  /* Shadow effect for name readability. */
+  height: 50vh;
+  background: linear-gradient(174deg, #060006B0, #0000 60%);
 }
 
 .navbar-container {
@@ -25,7 +26,7 @@
 }
 
 .nav-menu {
-  margin-top: 5rem;
+  margin-top: 4.5rem;
   margin-right: 1.25rem;
   width: 6.25rem;
   
