@@ -7,7 +7,7 @@
   z-index: 999;
 
   /* Shadow effect for name readability. */
-  height: 50vh;
+  height: 25vh;
   background: linear-gradient(174deg, #060006B0, #0000 60%);
 }
 
