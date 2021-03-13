@@ -1,47 +1,51 @@
 
+:root {
+  --text-primary: #ccc;
+  --text-special: #DCA3D7;
+  --text-special-dark: #c7c;
+}
+
 .navbar-logo, .navbar-logo:focus, .navbar-logo:hover, .navbar-logo:visited, .navbar-logo:link, .navbar-logo:active {
   text-decoration: none;
 }
 
 .logo-container {
-  min-width: 400px;
+  min-width: 40ch;
   display: flex;
   align-content: center;
-  margin-top: 10px;
-  margin-left: 5px;
+  margin-top: 1rem;
+  margin-left: 0.5rem;
 }
 
 .logo-image {
-  width: 60px;
+  width: 3.75rem;
 }
 
 .logo-text {
-  min-width: 400px;
+  font-size: 2.2rem;
+  min-width: 18ch;
   position: absolute;
   transform: translate(1.5%, 53%);
 }
 
 .glitch-text {
-  height: 40px;
+  height: 2.5rem;
   display: flex;
   justify-content: flex-start;
-  font-size: 34px;
-  color: #bbb;
+  color: var(--text-primary);
 }
 
 .glitch-text-letter {
   display: flex;
   justify-content: center;
-  width: 32px;
+  width: 2rem;
 }
 
-.glitch-text-special-letter {
-  color: #ebd;
+.glitch-text-special {
+  color: var(--text-special);
 }
 
 .glitch-text-separator {
-  display: flex;
-  justify-content: center;
-  width: 8px;
-  color: #c8b;
+  width: 0.5rem;
+  color: var(--text-special-dark);
 }

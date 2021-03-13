@@ -15,19 +15,19 @@
   justify-content: space-between;
   align-items: flex-start;
   width: 100%;
-  height: 140px;
-  max-width: 1500px;
+  height: 8.75rem;
+  max-width: 100rem;
 }
 
 .navbar-logo {
-  margin-top: 10px;
-  margin-left: 20px;
+  margin-top: 0.625rem;
+  margin-left: 1.25rem;
 }
 
 .nav-menu {
-  margin-top: 80px;
-  margin-right: 20px;
-  width: 100px;
+  margin-top: 5rem;
+  margin-right: 1.25rem;
+  width: 6.25rem;
   
   display: flex;
   align-content: flex-start;
@@ -37,7 +37,5 @@
 .nav-item {
   display: flex;
   justify-content: flex-end;
-  width: 100px;
-
-  color: #aaa;
+  width: 6.25rem;
 }

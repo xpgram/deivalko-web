@@ -1,6 +1,6 @@
 
 .debug-border {
-  border: 2px solid purple;
+  border: 1px solid purple;
 }
 
 .float-left {
@@ -22,4 +22,12 @@ body::-webkit-scrollbar {
 body {
   -ms-overflow-style: none;
   scrollbar-width: none;
+}
+
+.section-glow-upward {
+  box-shadow: 0 -0.2rem 0.4rem 0 #DCA3D7, 0 -0.5rem 1.0rem 0 #DCA3D7;
+}
+
+.section-glow-downward {
+  box-shadow: 0 0.2rem 0.4rem 0 #DCA3D7, 0 0.5rem 1.0rem 0 #DCA3D7;
 }

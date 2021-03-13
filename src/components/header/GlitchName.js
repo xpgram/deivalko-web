@@ -11,12 +11,13 @@ const NAME = `${FIRST_NAME}${LAST_NAME}`;
 // 1 letter per name, maybe.
 // Glitch name can do this with props, I guess.
 
+
 export class GlitchName extends Component {
 
   constructor(props) {
     super(props);
     this.state = {
-      stabilizeText: props.stabilizeText
+      stabilizeText: props.stabilizeText,
     }
   }
 
@@ -26,6 +27,11 @@ export class GlitchName extends Component {
 
   impulseOff = () => {
     this.setState({stabilizeText: false});
+  }
+
+  letterRevealCurve = (x) => {
+    const { trunc, sin } = Math;
+    return trunc(sin(x * 0.0625) * 20 + 10);
   }
 
   render() {
@@ -38,7 +44,7 @@ export class GlitchName extends Component {
           <span key={`glitch-letter_${i}`} className="glitch-text-letter">
             <GlitchLetter
               actual={name[i]}
-              changeCount={10+i*2}
+              changeCount={this.letterRevealCurve(i)}
               stabilize={this.state.stabilizeText} />
           </span>
         )
@@ -65,27 +71,28 @@ export class GlitchName extends Component {
 
 class GlitchLetter extends Component {
 
-  _shortTimer = 40;
-  _longTimer = 1600;
+  _shortTimer = 50;
+  _longTimer = 3000;
   _timerId;
 
+  // Letters to render
   actual;
   possible;
+
+  // Animation Vars
   changeCount;
-  maxChangeCount;
   stabilize;
 
   constructor(props) {
     super(props);
     this.state = {
       render: props.actual,
-      color: "#c8b",
+      colorize: false,
     };
 
     this.actual = props.actual;
     this.possible = NAME;
     this.changeCount = props.changeCount || 10;
-    this.maxChangeCount = this.changeCount;
     this.stabilize = props.stabilize || false;
   }
 
@@ -95,7 +102,7 @@ class GlitchLetter extends Component {
 
   componentDidUpdate = (prevProps) => {
     if (prevProps.stabilize !== this.props.stabilize) {
-      this.changeCount = this.maxChangeCount;
+      this.changeCount = this.props.changeCount;
       this.stabilize = this.props.stabilize;
       clearTimeout(this._timerId);
       this.update();
@@ -115,7 +122,7 @@ class GlitchLetter extends Component {
   }
 
   longTimer = () => {
-    return this.wait(this._longTimer, 0.25);
+    return this.wait(this._longTimer, 0.70);
   }
 
   randomLetter = () => {
@@ -125,31 +132,30 @@ class GlitchLetter extends Component {
 
   update = () => {
     if (this.stabilize && this.changeCount <= 0) {
-      this.setState({render: this.actual});
+      this.setState({
+        render: this.actual,
+      });
       return;
     } else {
       this.setState({
         render: this.randomLetter(),
-        color: (Math.random() < 0.2) ? '#ebd' : '#bbb'
+        colorize: (Math.random() < .2),
       });
       --this.changeCount;
     }
 
-    if (this.changeCount >= 0)
-      this._timerId = setTimeout(this.update, this.shortTimer());
-    else
-      this._timerId = setTimeout(this.update, this.longTimer());
-
-    // TODO SetTimeout seems to operate a bit outside the react live-update cycle.
-    // Try this:
-    //   write console.log('yes')
-    //   see that each letter posts 'yes' to the console on update.
-    //   remove console.log('yes')
-    //   see that each letter still posts 'yes' to the console, but
-    //     no longer(?) affects the live website. It becomes an orphan.
+    // Uses short time length when "stabilizing."
+    const time = (this.changeCount >= 0) ? this.shortTimer() : this.longTimer();
+    this._timerId = setTimeout(this.update, time);
   }
 
   render() {
-    return <span style={{color: this.state.color}}>{this.state.render}</span>;
+    return (
+      <span
+        className={(this.state.colorize) ? 'glitch-text-special' : ''}
+      >
+        {this.state.render}
+      </span>
+    )
   }
 }
