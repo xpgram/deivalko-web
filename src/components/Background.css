@@ -5,7 +5,8 @@
 
 .landing-container {
   width: 100vw;
-  height: 95vh;
+  height: calc(100vh - 3rem);
+  min-height: 25rem;
   background: linear-gradient(#242024, #201720);
 }
 
@@ -14,8 +15,8 @@
   min-width: 25rem;
   max-width: 50rem;
 
-  position: absolute;
-  top: 50%;
+  position: relative;
+  top: -50%;
   left: 50%;
   transform: translate(-50%, -50%);
 }
