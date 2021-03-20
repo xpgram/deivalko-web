@@ -3,13 +3,22 @@ import { Component } from 'react';
 const FIRST_NAME = "DEVIN";
 const LAST_NAME = "VALKO";
 const NAME = `${FIRST_NAME}${LAST_NAME}`;
+const EXTRA_CHARS = "ÐƎИΛⱯꓘΓΠƆ";
+
+// TODO Mouse-over is on the logo section level, not just the text.
+
+// TODO Letter change animation is more involved.
+// Flash ▯ over letters for 100ms?
+// I could just use a rect div, I don't actually need the char.
 
 // TODO Site Load: glitch to DEVIN.VALKO, wait; glitch to KONDK.IVVDN
 // First mouse-over consumes this process.
-// TODO Define color palette somewhere so I don't have to go needle searching.
-// TODO Guarantee at least 2 letters are pink at all times.
+
+// TODO Guarantee 1 or 2 letters are pink or 'corrupt' at all times.
+// Pink and corrupt do not need to be in the same place.
 // 1 letter per name, maybe.
-// Glitch name can do this with props, I guess.
+
+// TODO When not stabilized, make each letter 40% likely to be actual.
 
 
 export class GlitchName extends Component {
@@ -46,6 +55,8 @@ export class GlitchName extends Component {
               actual={name[i]}
               changeCount={this.letterRevealCurve(i)}
               stabilize={this.state.stabilizeText} />
+              {/* flash=true */}
+              {/*  */}
           </span>
         )
       } else {
@@ -78,10 +89,12 @@ class GlitchLetter extends Component {
   // Letters to render
   actual;
   possible;
+  possible_ext;
 
   // Animation Vars
   changeCount;
   stabilize;
+  corruptionRate;
 
   constructor(props) {
     super(props);
@@ -92,8 +105,10 @@ class GlitchLetter extends Component {
 
     this.actual = props.actual;
     this.possible = NAME;
+    this.possible_ext = EXTRA_CHARS;
     this.changeCount = props.changeCount || 10;
     this.stabilize = props.stabilize || false;
+    this.corruptionRate = props.corruptionRate || 0.075;
   }
 
   componentDidMount = () => {
@@ -126,8 +141,10 @@ class GlitchLetter extends Component {
   }
 
   randomLetter = () => {
-    const idx = Math.floor(Math.random()*this.possible.length);
-    return this.possible[idx];
+    const choose = (Math.random() > this.corruptionRate) ? this.possible : this.possible_ext;
+
+    const idx = Math.floor(Math.random()*choose.length);
+    return choose[idx];
   }
 
   update = () => {
