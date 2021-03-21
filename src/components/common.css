@@ -1,5 +1,14 @@
 :root {
+  /* Color Palette */
   --text-primary: #bbb;
+  --bg-color: #242024;
+  /* TODO Finish migrating color vars. */
+
+  /* Z-Index Levels */
+  --z-background: -100;
+  --z-content:     000;
+  --z-foreground:  100;
+  --z-navbar:      999;
 }
 
 .debug-border {
@@ -43,15 +52,4 @@ p {
   margin: 0 0 1rem 0;
   font-size: 1.3rem;
   color: var(--text-primary);
-}
-
-/* TODO Where should these go? Below. */
-
-.section-glow-upward {
-  position: relative;
-  box-shadow: 0 -0.2rem 0.4rem 0 #DCA3D7A0, 0 -0.5rem 1.2rem -0.1rem #DCA3D780;
-}
-
-.section-glow-downward {
-  box-shadow: 0 0.2rem 0.4rem 0 #DCA3D7, 0 0.5rem 1.2rem -0.2rem #DCA3D7;
 }

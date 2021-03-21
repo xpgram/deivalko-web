@@ -19,7 +19,7 @@ function App() {
         {/* Rename to landing or something; where should 'main' go? */}
         {/* Also, make it a container that has the logo image in it. */}
 
-        <Section className="section-glow-upward">
+        <Section>
           <h1>Hey</h1>
           <p style={{maxWidth: '30rem', margin: '0 auto 0 auto'}}>
             My name is <span style={{color: '#969'}}>Dei</span> <span style={{color: '#A58'}}>Valko</span>.
@@ -29,6 +29,8 @@ function App() {
             Do something cool with me sometime.
           </p>
         </Section>
+
+        <Background />
 
       </Router>
     </div>

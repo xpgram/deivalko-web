@@ -7,8 +7,8 @@ export default class Section extends Component {
 
   render() {
     return (
-      <section className={`section-plaque ${this.props.className}`}>
-        <div className='text-center'>
+      <section className={`section-plaque section-glow ${this.props.className}`}>
+        <div className='section-content text-center'>
           {this.props.children}
         </div>
       </section>

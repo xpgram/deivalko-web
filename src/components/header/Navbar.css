@@ -4,7 +4,7 @@
   justify-content: center;
   position: fixed;
   width: 100%;
-  z-index: 999;
+  z-index: var(--z-navbar);
 
   /* Shadow effect for name readability. */
   height: 25vh;
