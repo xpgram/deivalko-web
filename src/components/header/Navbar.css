@@ -9,6 +9,9 @@
   /* Shadow effect for name readability. */
   height: 25vh;
   background: linear-gradient(174deg, #060006B0, #0000 60%);
+
+  /* TODO What about a shadow box on the logo itself?
+  The look would bleed into the page less, I think. It'd be more tightly controlled. */
 }
 
 .navbar-container {
