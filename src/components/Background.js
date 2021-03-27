@@ -1,8 +1,8 @@
 import { Component } from "react";
 import "./Background.css";
 
-import image from "../public/img/PixilBG_faded.png";
-import logo from "../public/img/d.V.png";
+import image from "../resources/img/PixilBG_faded.png";
+import logo from "../resources/img/d.V.png";
 
 export class Background extends Component {
   render() {
