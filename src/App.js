@@ -25,8 +25,9 @@ function App() {
             My name is <span style={{color: '#969'}}>Dei</span> <span style={{color: '#A58'}}>Valko</span>.
             I am an indie games designer</p>
           <p style={{maxWidth: '50rem', margin: '0 auto 0 auto'}}>
-            and artist based in Oregon. Blah blah, more stuff, I like doing things that are cool.
-            Do something cool with me sometime.
+            and artist based in Oregon.
+            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Error iusto delectus quod corrupti necessitatibus magnam perferendis voluptas voluptate totam enim animi rem neque nisi doloribus cumque quis, laborum cum at?
+            {/* lorem30, this was */}
           </p>
         </Section>
 
