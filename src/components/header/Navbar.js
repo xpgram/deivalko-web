@@ -1,4 +1,4 @@
-import "./Navbar.css";
+import "./Navbar.scss";
 import { Component } from "react"
 import { Link } from "react-router-dom"
 import { HeaderLogo } from "./HeaderLogo"
@@ -19,7 +19,7 @@ class Navbar extends Component {
 
               <li className="nav-item">
                 <Link to='/' className="nav-links">
-                  <Button buttonStyle='btn--outline'>
+                  <Button buttonStyle='btn--navigation'>
                     BIO
                   </Button>
                 </Link>
@@ -27,7 +27,7 @@ class Navbar extends Component {
 
               <li className="nav-item">
                 <Link to='/' className="nav-links">
-                <Button buttonStyle='btn--outline'>
+                <Button buttonStyle='btn--navigation'>
                     WORK
                   </Button>
                 </Link>
@@ -35,7 +35,7 @@ class Navbar extends Component {
 
               <li className="nav-item">
                 <Link to='/' className="nav-links">
-                <Button buttonStyle='btn--outline'>
+                <Button buttonStyle='btn--navigation'>
                     CONTACT
                   </Button>
                 </Link>
@@ -43,7 +43,7 @@ class Navbar extends Component {
 
               <li className="nav-item">
                 <Link to='/' className="nav-links">
-                <Button buttonStyle='btn--outline'>
+                <Button buttonStyle='btn--navigation'>
                     CONTACT
                   </Button>
                 </Link>
@@ -51,7 +51,7 @@ class Navbar extends Component {
 
               <li className="nav-item">
                 <Link to='/' className="nav-links">
-                <Button buttonStyle='btn--outline'>
+                <Button buttonStyle='btn--navigation'>
                     CONTACT
                   </Button>
                 </Link>

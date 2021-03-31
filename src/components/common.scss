@@ -11,34 +11,25 @@
   --z-navbar:      999;
 }
 
-.debug-border {
-  border: 1px solid purple;
-}
+$palette: (
+  primary: (
+    darker: #888,
+    dark: #aaa,
+    base: #bbb,
+    light: #ddd,
+    lighter: #fff
+  ),
+  secondary: (
+    darker: #242024,
+    dark: #535,
+    base: #757,
+    light: #979,
+    lighter: #B9B
+  )
+);
 
-.float-left {
-  float: left;
-}
-
-.float-right {
-  float: right;
-}
-
-.text-center {
-  text-align: center;
-}
-
-.text-right-adjusted {
-  text-align: right;
-}
-
-/*
-body::-webkit-scrollbar {
-  display: none;
-} */
-
-body {
-  -ms-overflow-style: none;
-  scrollbar-width: none;
+.wireframe {
+  outline: 0.125rem dashed red;
 }
 
 h1 {
@@ -49,7 +40,6 @@ h1 {
 }
 
 p {
-  margin: 0 0 1rem 0;
   font-size: 1.3rem;
   color: var(--text-primary);
 }

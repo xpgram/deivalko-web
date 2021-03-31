@@ -3,17 +3,22 @@ import { Background } from './components/Background';
 import Navbar from './components/header/Navbar';
 import Section from './components/Section';
 
-import './components/common.css';
+import './components/common.scss';
 
 function App() {
   return (
-    <div className="App">
+    <app>
       <Router>
 
         <Navbar />
+
         <Switch>          {/* What does Switch do? */}
           <Route path='/' exact />
         </Switch>
+
+        {/* <Section>
+          <Landing />
+        </Section> */}
 
         <Background />
         {/* Rename to landing or something; where should 'main' go? */}
@@ -34,7 +39,7 @@ function App() {
         <Background />
 
       </Router>
-    </div>
+    </app>
   );
 }
 

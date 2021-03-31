@@ -1,4 +1,4 @@
-import "./HeaderLogo.css";
+import "./HeaderLogo.scss";
 import { Component } from "react";
 import logo from "../../resources/img/dV_logo.png";
 import { GlitchName } from "./GlitchName";

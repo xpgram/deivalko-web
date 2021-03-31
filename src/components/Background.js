@@ -1,5 +1,5 @@
 import { Component } from "react";
-import "./Background.css";
+import "./Background.scss";
 
 import image from "../resources/img/PixilBG_faded.png";
 import logo from "../resources/img/d.V.png";

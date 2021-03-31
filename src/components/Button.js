@@ -1,10 +1,9 @@
 import { Component } from 'react';
-import './Button.css';
-import { Link } from 'react-router-dom';
+import './Button.scss';
 
-const STYLES = ['btn--primary', 'btn--outline'];
+const STYLES = ['btn--navigation'];
 
-const SIZES = ['btn--medium', 'btn--large'];
+const SIZES = ['btn--medium'];
 
 export class Button extends Component {
   constructor(props) {
@@ -22,9 +21,9 @@ export class Button extends Component {
     const { checkButtonStyle, checkButtonSize } = this.state;
     return (
       <button
-        className={`btn ${checkButtonStyle} ${checkButtonSize}`}
+        className={`${checkButtonStyle} ${checkButtonSize}`}
         onClick={onClick}
-        type={type}
+        type={type}         // What is this?
       >
         {children}
       </button>

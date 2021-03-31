@@ -3,7 +3,7 @@ import { Component } from 'react';
 const FIRST_NAME = "DEVIN";
 const LAST_NAME = "VALKO";
 const NAME = `${FIRST_NAME}${LAST_NAME}`;
-const EXTRA_CHARS = "ÐƎИΛⱯꓘΓΠƆ";
+const EXTRA_CHARS = "ƎИΛⱯꓘΓΠƆ";
 
 // TODO Mouse-over is on the logo section level, not just the text.
 
