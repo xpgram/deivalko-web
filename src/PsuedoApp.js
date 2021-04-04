@@ -1,10 +1,11 @@
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
-import { Landing } from './components/Landing';
+import { Background } from './components/Background';
 import Navbar from './components/header/Navbar';
 import Section from './components/Section';
 
-import './components/common.scss';
-import './components/Section.scss';
+import './components/common.css';
+
+// This script is pseudo code because I don't know how to structure web pages.
 
 function App() {
   return (
@@ -13,15 +14,18 @@ function App() {
 
         <Navbar />
 
-        <Switch>          {/* What does Switch do? */}
+        {/* This is probably path information for... *this* spot, I guess. */}
+        <Switch>
           <Route path='/' exact />
         </Switch>
 
-        <Section id="landing" >
+        <Section>
           <Landing />
         </Section>
 
-        <Section id="bio" >
+        
+
+        <Section>
           <h1>Hey</h1>
           <p style={{maxWidth: '30rem', margin: '0 auto 0 auto'}}>
             My name is <span style={{color: '#969'}}>Dei</span> <span style={{color: '#A58'}}>Valko</span>.
@@ -33,7 +37,7 @@ function App() {
           </p>
         </Section>
 
-        <Landing />
+        <Background />
 
       </Router>
     </app>
