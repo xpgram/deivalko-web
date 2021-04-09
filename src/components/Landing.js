@@ -1,5 +1,5 @@
 import { Component } from "react";
-import styles from "./Landing.module.scss"; // TODO Adjust webpack to specify globals, not locals.
+import styles from "./landing.module.scss"; // TODO Adjust webpack to specify globals, not locals.
 
 import image from "../resources/img/PixilBG_faded.png";
 import logo from "../resources/img/d.V.png";

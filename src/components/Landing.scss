@@ -1,11 +1,12 @@
-  
+@use './colors.scss';
+
 .landing {
   overflow: hidden;
   width: 100%;
   
   height: calc(100vh - 3rem);
   min-height: 25rem;
-  background: linear-gradient(#242024, #201720);
+  background: linear-gradient(#242024, $palette.bg_gradient.dark);
 
   .background {
     width: 100%;

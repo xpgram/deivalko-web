@@ -1,11 +1,17 @@
-  
+@use '../styles/colors';
+
 .landing {
+  // TODO @include colors.get;
   overflow: hidden;
   width: 100%;
   
   height: calc(100vh - 3rem);
   min-height: 25rem;
-  background: linear-gradient(#242024, #201720);
+
+  // $light: get(bg-gradient, light);
+  // $dark: get(bg-gradient, dark);
+  // background: map-get(colors.$palette, bg-gradient-r);
+  background: linear-gradient(colors.get(bg-gradient, light), colors.get(bg-gradient, dark));
 
   .background {
     width: 100%;

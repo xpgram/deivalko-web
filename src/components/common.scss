@@ -11,23 +11,6 @@
   --z-navbar:      999;
 }
 
-$palette: (
-  primary: (
-    darker: #888,
-    dark: #aaa,
-    base: #bbb,
-    light: #ddd,
-    lighter: #fff
-  ),
-  secondary: (
-    darker: #242024,
-    dark: #535,
-    base: #757,
-    light: #979,
-    lighter: #B9B
-  )
-);
-
 .wireframe {
   outline: 0.125rem dashed red;
 }

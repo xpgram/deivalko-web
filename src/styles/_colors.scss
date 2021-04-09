@@ -1,0 +1,41 @@
+
+$palette: (
+  text: (
+    dark: #aaa,
+    base: #bbb,
+    light: #ddd
+  ),
+  accent: (
+    dark: #535,
+    base: #757,
+    light: #979,
+    lighter: #B9B
+  ),
+  bg-gradient: (
+    // light: #602028,
+    light: #242024,
+    dark: #201720
+  ),
+  bg-gradient-r: linear-gradient(#602028, #241824)
+);
+
+/**
+ * Given a list of progressively narrow map-selectors, retrieve a color
+ * or gradient from the palette, or null if selectors couldn't resolve
+ * to one.
+ */
+@function get($selectors...) {
+  $container: $palette;
+
+  @each $term in $selectors {
+    @if map-has-key($container, $term) {
+      $container: map-get($container, $term);
+    }
+    @else {
+      @warn "unknown color `#{$term}` in `#{$container}` in palette";
+      @return null;
+    }
+  }
+
+  @return $container;
+}
