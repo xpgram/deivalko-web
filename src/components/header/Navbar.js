@@ -1,60 +1,43 @@
 import "./Navbar.scss";
 import { Component } from "react"
-import { Link } from "react-router-dom"
 import { HeaderLogo } from "./HeaderLogo"
-import { Button } from "../Button";
+import { Button } from "./Button";
 
-class Navbar extends Component {
+export class Navbar extends Component {
 
   render() {
     return (
       <>
         <nav className="navbar">
           <div className="navbar-container">
-            <Link to='/' className="navbar-logo">
+            <a href='#landing' className="navbar-logo">
               <HeaderLogo />
-            </Link>
+            </a>
 
             <ul className="nav-menu">
 
               <li className="nav-item">
-                <Link to='/' className="nav-links">
+                <a href='#bio' className="nav-links">
                   <Button buttonStyle='btn--navigation'>
                     BIO
                   </Button>
-                </Link>
+                </a>
               </li>
 
               <li className="nav-item">
-                <Link to='/' className="nav-links">
-                <Button buttonStyle='btn--navigation'>
+                <a href='#portfolio' className="nav-links">
+                  <Button buttonStyle='btn--navigation'>
                     WORK
                   </Button>
-                </Link>
+                </a>
               </li>
 
               <li className="nav-item">
-                <Link to='/' className="nav-links">
-                <Button buttonStyle='btn--navigation'>
+                <a href='#contact' className="nav-links">
+                  <Button buttonStyle='btn--navigation'>
                     CONTACT
                   </Button>
-                </Link>
-              </li>
-
-              <li className="nav-item">
-                <Link to='/' className="nav-links">
-                <Button buttonStyle='btn--navigation'>
-                    CONTACT
-                  </Button>
-                </Link>
-              </li>
-
-              <li className="nav-item">
-                <Link to='/' className="nav-links">
-                <Button buttonStyle='btn--navigation'>
-                    CONTACT
-                  </Button>
-                </Link>
+                </a>
               </li>
 
             </ul>
@@ -65,5 +48,3 @@ class Navbar extends Component {
     )
   }
 }
-
-export default Navbar;

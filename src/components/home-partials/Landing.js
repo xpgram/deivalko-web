@@ -1,8 +1,8 @@
 import { Component } from "react";
-import styles from "./landing.module.scss"; // TODO Adjust webpack to specify globals, not locals.
+import styles from "./Landing.module.scss";
 
-import image from "../resources/img/PixilBG_faded.png";
-import logo from "../resources/img/d.V.png";
+import image from "../../resources/img/PixilBG_faded.png";
+import logo from "../../resources/img/d.V.png";
 
 export class Landing extends Component {
   render() {
@@ -18,6 +18,9 @@ export class Landing extends Component {
           src={logo}
           alt=""
         />
+        <div className={styles.wrapper}>
+          <div className={styles.glow} />
+        </div>
       </div>
     );
   }
