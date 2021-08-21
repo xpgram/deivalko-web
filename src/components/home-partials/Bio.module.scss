@@ -1,1 +1,27 @@
 
+.wrapper {
+  padding: 5rem 0;
+  background: var(--bg-color);
+}
+
+.attentionGrabber {
+  margin-top: 0;
+  margin-bottom: 3rem;
+  font-size: 4rem;
+  text-align: center;
+  color: var(--text-primary);
+}
+
+.text {
+  margin: 0 auto;
+  max-width: 60ch;
+  font-size: 1.6rem;
+  text-align: justify;
+  text-align-last: center;
+  color: var(--text-primary);
+
+  &:first-line {
+    text-align: center;
+    max-width: 40ch;
+  }
+}
