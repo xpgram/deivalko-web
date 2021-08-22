@@ -1,0 +1,57 @@
+@use 'sass:color';
+
+.container {
+  flex: 1 1 40%;
+
+  margin: 1.25rem;
+  padding: 1rem;
+  display: flex;
+  flex-direction: column;
+  background: color.adjust(#242024, $lightness: 18%);
+}
+
+.title {
+  margin: 0;
+  padding-bottom: 1rem;
+  font-size: 2.2rem;
+  line-height: 2.2rem;
+  color: var(--text-primary);
+}
+
+.contentWrapper {
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: row;
+  align-items: flex-start;
+}
+
+.visualWrapper {
+  flex: 1 1 20rem;
+  display: flex;
+}
+
+.column {
+  content: ' ';
+  width: .8rem;
+  height: auto;
+  margin-right: .8rem;
+  background: #A79;
+}
+
+.visual {
+  content: ' ';
+  width: 100%;
+  height: 10rem;  // TODO Remove: determined by content.
+  margin-right: 1rem;
+
+  // TODO Monochrome; ease transition into color, video-playback on widget hover (not img hover)
+  // This will, naturally, require javascript.
+}
+
+.description {
+  flex: 1 1 30ch;
+  min-width: 40%;
+  padding-right: 1rem;
+  font-size: 1.4rem;
+  color: var(--text-primary);
+}

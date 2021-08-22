@@ -1,0 +1,21 @@
+@use 'sass:color';
+
+.background {
+  display: flex;
+  justify-content: center;
+  background: var(--bg-color);
+}
+
+.container {
+  flex: 100%;
+  margin: 5rem;
+  padding: 1.25rem;
+  background: color.adjust(#242024, $lightness: 8%);
+
+  display: flex;
+	flex-direction: row;
+	flex-wrap: wrap;
+	justify-content: center;
+	align-items: flex-start;
+	align-content: flex-start;
+}

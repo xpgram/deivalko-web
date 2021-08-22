@@ -1,19 +1,27 @@
 import { Component } from "react";
+import { PortfolioItem } from "../PortfolioItem";
 
+import styles from "./Portfolio.module.scss";
 
 export class Portfolio extends Component {
   render() {
     return (
-      <>
-        <h1>Hey</h1>
-        <p style={{maxWidth: '30rem', margin: '0 auto 0 auto'}}>
-          My name is <span style={{color: '#969'}}>Dei</span> <span style={{color: '#A58'}}>Valko</span>.
-          I am an indie games designer</p>
-        <p style={{maxWidth: '50rem', margin: '0 auto 0 auto'}}>
-          and artist based in Oregon.
-          Lorem ipsum dolor sit amet, consectetur adipisicing elit. Error iusto delectus quod corrupti necessitatibus magnam perferendis voluptas voluptate totam enim animi rem neque nisi doloribus cumque quis, laborum cum at?
-        </p>
-      </>
+      <div className={styles.background}>
+        <div className={styles.container}>
+          <PortfolioItem
+            title="Advance Wars Clone"
+            description="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed iaculis gravida euismod. Phasellus nec consectetur magna. Ut condimentum, lectus et commodo sollicitudin, tortor nulla tempus nibh, id dapibus est ante sit amet nunc. Maecenas blandit tortor tellus, eget dapibus diam imperdiet vitae. Donec gravida lacus."
+          />
+          <PortfolioItem
+            title="Advance Wars Clone"
+            description="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed iaculis gravida euismod. Phasellus nec consectetur magna. Ut condimentum, lectus et commodo sollicitudin, tortor nulla tempus nibh, id dapibus est ante sit amet nunc. Maecenas blandit tortor tellus, eget dapibus diam imperdiet vitae. Donec gravida lacus."
+          />
+          <PortfolioItem
+            title="Advance Wars Clone"
+            description="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed iaculis gravida euismod. Phasellus nec consectetur magna. Ut condimentum, lectus et commodo sollicitudin, tortor nulla tempus nibh, id dapibus est ante sit amet nunc. Maecenas blandit tortor tellus, eget dapibus diam imperdiet vitae. Donec gravida lacus."
+          />
+        </div>
+      </div>
     )
   }
 }
