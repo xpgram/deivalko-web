@@ -15,6 +15,8 @@ export class Bio extends Component {
           Lorem ipsum dolor sit amet, consectetur adipisicing elit. Error iusto delectus quod corrupti necessitatibus magnam perferendis voluptas voluptate totam enim animi rem neque nisi doloribus cumque quis, laborum cum at?
         </p>
       </div>
+
+      // TODO Add skills and such
     )
   }
 }

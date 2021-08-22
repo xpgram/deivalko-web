@@ -40,6 +40,22 @@ export class Navbar extends Component {
                 </a>
               </li>
 
+              <li className="nav-item">
+                <a href='#contact' className="nav-links">
+                  <Button buttonStyle='btn--navigation'>
+                    LINKEDIN
+                  </Button>
+                </a>
+              </li>
+
+              <li className="nav-item">
+                <a href='#contact' className="nav-links">
+                  <Button buttonStyle='btn--navigation'>
+                    GITHUB
+                  </Button>
+                </a>
+              </li>
+
             </ul>
 
           </div>
