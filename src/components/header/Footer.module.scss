@@ -1,0 +1,12 @@
+@use "sass:color";
+
+.background {
+  background: linear-gradient(to bottom, #343034 33%, #000 100%);
+}
+
+.text {
+  padding: .25rem 1.5rem;
+  font-size: 1.15rem;
+  text-align: right;
+  color: var(--text-primary);
+}
