@@ -26,6 +26,8 @@ export class PortfolioItem extends Component {
       <div className={styles.container}
         onMouseEnter={this.onMouseEnter}
         onMouseLeave={this.onMouseLeave}
+        onTouchStart={this.onMouseEnter}
+        onTouchEnd={this.onMouseLeave}
       >
         <div className={styles.frostedGlass}>
           <div className={styles.visualWrapper}>
