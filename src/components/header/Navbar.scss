@@ -8,10 +8,10 @@
 
   /* Shadow effect for name readability. */
   height: 25vh;
-  background: linear-gradient(174deg, #060006B0, #0000 60%);
+  background: linear-gradient(to bottom, #060006B0, #0000 60%);
 
-  /* TODO What about a shadow box on the logo itself?
-  The look would bleed into the page less, I think. It'd be more tightly controlled. */
+  // TODO Add backdrop to logo and nav-menu.
+  // TODO Keep background as vignette on landing section.
 }
 
 .navbar-container {
@@ -24,22 +24,21 @@
 }
 
 .navbar-logo {
-  margin-top: 0.625rem;
-  margin-left: 1.25rem;
+  margin-top: 1.0rem;
+  margin-left: 1.7rem;
 }
 
 .nav-menu {
   margin-top: 4.5rem;
-  margin-right: 1.25rem;
-  width: 6.25rem;
+  margin-right: 1.0rem;
+  width: 12rem;
   
   display: flex;
-  align-content: flex-start;
+  align-content: flex-end;
   flex-flow: column wrap;
 }
 
 .nav-item {
   display: flex;
   justify-content: flex-end;
-  width: 6.25rem;
 }
