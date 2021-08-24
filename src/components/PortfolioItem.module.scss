@@ -1,85 +1,66 @@
 @use 'sass:color';
 
 $standardWidth: 1rem;
-$columnWidth: .75rem;
-
-@mixin outline {
-  // outline: 2px solid white;
-}
 
 .container {
-  flex: 1 1 40ch;
-  padding: $standardWidth * 1.5;
-  padding-bottom: $standardWidth * 2;
-  background: color.adjust(#242024, $lightness: 18%);
-  border: .1rem solid #FDE4;
-  box-shadow: .0rem .5rem .5rem 0 #0008;
+  user-select: none;
 
-  display: flex;
-  flex-wrap: wrap;
-  flex-direction: row;
-  align-items: flex-start;
-  align-content: flex-start;
-  gap: $standardWidth*1.75;
+  width: 45%;
+  min-width: 24rem;
+  max-width: 36rem;
+
+  border: .1rem solid #BAB7;
+  padding: $standardWidth * 2;
+  backdrop-filter: blur(.5rem);
+
+  $drop-shadow: .0rem .5rem .5rem 0 #0008;
+  $glow-shadow: .0rem .5rem .5rem 0 #A792;
+
+  transition: box-shadow .3s ease, background-color .3s ease;
+  box-shadow: $drop-shadow;
+
+  &:hover, &:focus {
+    box-shadow: $drop-shadow, $glow-shadow;
+    background-color: #A791;
+  }
+
+  // Makes single-column more bigly
+  @media (max-width: 72rem) {
+    width: 100%;
+  }
 }
 
-.header {
-  flex: 1 1 50ch;
-  display: flex;
-  flex-direction: column;
-  gap: $standardWidth;
+.frostedGlass {
+  padding: $standardWidth * 2;
+  background-color: #FFF1;
+  opacity: 75%;
+}
 
-  @include outline;
+.visualWrapper {
+  position: relative;
+  overflow: hidden;
+}
+
+.visual {
+  width: 100%;
+  border: .1rem solid #4444;
 }
 
 .title {
   margin: 0;
-  margin-bottom: $standardWidth / 2;
-  // padding-right: $standardWidth * 1;
+  padding: $standardWidth;
 
-  font-size: 2.2rem;
+  position: absolute;
+  left: 0;
+  bottom: 0;
+
+  max-width: 80%;
+
+  font-size: 1.7rem;
   line-height: 1.3;
-  word-spacing: $standardWidth * .35;
+  word-spacing: $standardWidth * .3;
   text-align: left;
   color: var(--text-primary);
-}
 
-.visualWrapper {
-  display: flex;
-}
-
-.column {
-  $borderCutSize: $columnWidth;
-
-  content: ' ';
-  width: $columnWidth;
-  margin-right: $columnWidth;
-  margin-left: -$borderCutSize;
-  
-  border-left: $borderCutSize solid transparent;
-  border-bottom: $borderCutSize*1.5 solid transparent;
-  border-right: $borderCutSize solid #A79;
-}
-
-.visual {
-  content: ' ';
-  width: calc(100% - #{$columnWidth * 2});
-
-  border: .1rem solid #FDE4;
-  box-shadow: 0 .5rem .5rem 0 #0008;
-
-  // TODO Monochrome; ease transition into color, video-playback on widget hover (not img hover)
-  // This will, naturally, require javascript.
-}
-
-.description {
-  flex: 1 1 30ch;
-  padding-bottom: $standardWidth;
-  border-bottom: .2rem solid #BAB7;
-
-  @include outline;
-
-  color: var(--text-primary);
-  font-size: 1.4rem;
-  text-align: justify;
+  background: #0006;
 }
