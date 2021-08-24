@@ -34,7 +34,7 @@ $standardWidth: 1rem;
 .frostedGlass {
   padding: $standardWidth * 2;
   background-color: #FFF1;
-  opacity: 75%;
+  opacity: 66%;
 }
 
 .visualWrapper {
@@ -45,6 +45,13 @@ $standardWidth: 1rem;
 .visual {
   width: 100%;
   border: .1rem solid #4444;
+
+  transition: filter .3s ease;
+  filter: grayscale(100%) contrast(125%) brightness(50%);
+}
+
+.visualHover {
+  filter: none;
 }
 
 .title {
@@ -61,7 +68,7 @@ $standardWidth: 1rem;
   line-height: 1.3;
   word-spacing: $standardWidth * .3;
   text-align: left;
-  color: var(--text-primary);
+  color: #FFF;
 
   background: #0006;
 }
