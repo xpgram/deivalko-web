@@ -9,8 +9,9 @@ export class Portfolio extends Component {
   render() {
     return (
       <div className={styles.background}>
-        <div className={styles.container}>
-          <img src={test} className={styles.image} />
+        <div className={styles.container}
+          style={{backgroundImage: `url(${test})`}}
+        >
           <PortfolioItem
             title="Advance Wars Clone using Pixi.js and my own brain"
             description="Lorem ipsum dolor sit amet consectetur adipisicing elit. Dignissimos similique qui sunt exercitationem commodi sint illo velit ea voluptas, maxime aspernatur enim veniam, accusamus modi sed voluptatibus quia? Accusamus rem illo corporis dolorum recusandae excepturi reiciendis a omnis rerum qui."
