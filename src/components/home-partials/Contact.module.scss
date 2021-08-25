@@ -1,12 +1,15 @@
+@use 'sass:color';
 
 .background {
   margin: 0;
+  padding-top: 3rem;
+  padding-bottom: 3rem;
   background: var(--bg-color);
 
   text-align: center;
 }
 
-.title {
+.header {
   margin: 0;
   font-size: 2rem;
   line-height: 2rem;
@@ -14,7 +17,80 @@
 }
 
 .text {
-  margin: 0;
+  margin: 1rem;
   font-size: 1.4rem;
   color: var(--text-primary);
+}
+
+.input {
+  margin: 2rem;
+  padding: 1rem 1.5rem;
+
+  width: 50%;
+  height: 10rem;
+
+  min-width: 20ch;
+  max-width: 60ch;
+
+  font-size: 1.2rem;
+
+  border-radius: 2rem;
+
+  background: var(--text-primary);
+  box-shadow: 0 0 0 .75rem var(--bg-color),
+              0 0 0 1rem var(--text-primary);
+
+  transition: box-shadow .3s ease;
+
+  &:focus {
+    box-shadow: 0 0 0 .75rem var(--bg-color),
+                0 0 0 1rem #C9B,
+                0 0 .5rem 1rem #A79;
+  }
+
+  outline: none;
+  resize: none;
+}
+
+.button {
+  display: block;
+  margin: auto;
+  margin-top: -.5rem;
+
+  width: 16ch;
+  height: 3rem;
+
+  font-size: 1.3rem;
+  letter-spacing: .1rem;
+
+  background: #9A7;
+  box-shadow: none;
+
+  border-bottom-left-radius: 2rem;
+  border-bottom-right-radius: 2rem;
+
+  transition: background-color .3s ease, box-shadow .3s ease;
+
+  &:hover, &:focus {
+    background: color.adjust(#9A7, $lightness: 5%);
+    box-shadow: 0 .25rem 1rem -.5rem #9A7;
+  }
+
+  &:active {
+    background: color.adjust(#9A7, $lightness: 10%);
+  }
+}
+
+
+.prankText {
+  color: #AB8;
+  padding-top: .5rem;
+  margin-bottom: -1.5rem;
+
+  transition: opacity .6s ease;
+  opacity: 0;
+}
+
+.prankTextShow {
+  opacity: 100%;
 }
