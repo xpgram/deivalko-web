@@ -1,31 +1,20 @@
 import { Component } from 'react';
-import './Button.scss';
+import { IExternalLink } from '../Icon';
 
-const STYLES = ['btn--navigation'];
-
-const SIZES = ['btn--medium'];
+import styles from './Button.module.scss';
 
 export class Button extends Component {
-  constructor(props) {
-    super(props);
-    const { buttonStyle, buttonSize } = props;
-    
-    this.state = {
-      checkButtonStyle: STYLES.includes(buttonStyle) ? buttonStyle : STYLES[0],
-      checkButtonSize: SIZES.includes(buttonSize) ? buttonSize : SIZES[0],
-    };
-  }
-
   render() {
-    const { children, type, onClick } = this.props;
-    const { checkButtonStyle, checkButtonSize } = this.state;
     return (
       <button
-        className={`${checkButtonStyle} ${checkButtonSize}`}
-        onClick={onClick}
-        type={type}         // What is this?
+        className={styles.button}
+        onMouseEnter={this.onMouseEnter}
+        onMouseLeave={this.onMouseLeave}
+        onTouchStart={this.onMouseEnter}
+        onTouchEnd={this.onMouseLeave}
       >
-        {children}
+        {this.props.children}
+        {this.props.external && <IExternalLink className={styles.icon} />}
       </button>
     );
   }

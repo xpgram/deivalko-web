@@ -1,0 +1,55 @@
+
+$font-size: 1.5rem;
+$letter-spacing: .1rem;
+
+$color-primary: var(--text-primary);
+$color-hover: #DAD;
+$color-glow: #FCF4;
+$color-active: palevioletred;
+
+$anim-time: .3s;
+
+.button {
+  padding: 0.5rem 1.2rem;
+  font-size: $font-size;
+  letter-spacing: $letter-spacing;
+
+  color: #CCC;
+  background-color: transparent;
+
+  border: none;
+  cursor: pointer;
+  user-select: none;
+  transition: all $anim-time ease;
+
+  // TODO tab-selecting these is hard to see
+  &:hover, &:focus {
+    outline: none;
+    color: $color-hover;
+    text-shadow: 0 0 0.4rem $color-glow;
+
+    .icon {
+      fill: $color-hover;
+    }
+  }
+
+  &:focus::before {
+    content: '>';
+  }
+
+  &:active {
+    color: $color-active;
+
+    .icon {
+      fill: $color-active;
+    }
+  }
+}
+
+.icon {
+  margin-left: $letter-spacing * 2;
+  height: $font-size * .8;
+  fill: var(--text-primary);
+
+  transition: all $anim-time ease;
+}
