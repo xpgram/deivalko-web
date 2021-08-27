@@ -9,11 +9,20 @@
 }
 
 .logo-container {
+  position: relative;
+
   min-width: 40ch;
   display: flex;
   align-content: center;
   margin-top: 1rem;
   margin-left: 0.5rem;
+
+  // TODO Add this to div centered below name text
+  &:hover, &:focus {
+    .logo-text-glow {
+      opacity: 1;
+    }
+  }
 }
 
 .logo-image {
@@ -21,24 +30,35 @@
 }
 
 .logo-text {
-  font-size: 2.2rem;
-  min-width: 18ch;
   position: absolute;
-  transform: translate(1.5%, 53%);
+  font-size: 2.2rem;
+  transform: translate(1.5%, 53%); // TODO What?
+}
+
+.logo-text-glow {
+  width: 100%;
+  height: 100%;
+
+  position: absolute;
+  top: .4rem;
+  left: 0;
+
+  background: radial-gradient(ellipse 100% 10% at 50% 85%, #A79, #0000 60%);
+
+  transition: opacity .4s ease-out;
+  opacity: 0;
+
+  box-shadow: 0 1rem 1.4rem -1rem #A796;
 }
 
 .glitch-text {
-  height: 2.5rem;
+  margin-top: -.1rem;
+
+  width: fit-content;
+  height: 3rem;
   display: flex;
   justify-content: flex-start;
   color: var(--text-primary);
-}
-
-.glitch-text-letter-overlay {
-  width: 100%;
-  height: 100%;
-  color: var(--text-primary);
-  transition: all 100ms ease-out;
 }
 
 .glitch-text-letter {

@@ -6,41 +6,15 @@ const NAME = `${FIRST_NAME}${LAST_NAME}`;
 const EXTRA_CHARS = "ƎИΛⱯꓘΓΠƆ";
 
 // TODO Mouse-over is on the logo section level, not just the text.
-
-// TODO Letter change animation is more involved.
-// Flash ▯ over letters for 100ms?
-// I could just use a rect div, I don't actually need the char.
-
-// TODO Site Load: glitch to DEVIN.VALKO, wait; glitch to KONDK.IVVDN
-// First mouse-over consumes this process.
-
-// TODO Guarantee 1 or 2 letters are pink or 'corrupt' at all times.
-// Pink and corrupt do not need to be in the same place.
-// 1 letter per name, maybe.
-
 // TODO When not stabilized, make each letter 40% likely to be actual.
 
 
 export class GlitchName extends Component {
 
-  constructor(props) {
-    super(props);
-    this.state = {
-      stabilizeText: props.stabilizeText,
-    }
-  }
-
-  impulseOn = () => {
-    this.setState({stabilizeText: true});
-  }
-
-  impulseOff = () => {
-    this.setState({stabilizeText: false});
-  }
-
-  letterRevealCurve = (x) => {
-    const { trunc, sin } = Math;
-    return trunc(sin(x * 0.0625) * 20 + 10);
+  /** Given in index, returns how many times a letter should change before showing actual. */
+  textStabilizationCurve = (x) => {
+    const { trunc } = Math;
+    return trunc(x * 2 + 10);
   }
 
   render() {
@@ -53,10 +27,9 @@ export class GlitchName extends Component {
           <span key={`glitch-letter_${i}`} className="glitch-text-letter">
             <GlitchLetter
               actual={name[i]}
-              changeCount={this.letterRevealCurve(i)}
-              stabilize={this.state.stabilizeText} />
-              {/* flash=true */}
-              {/*  */}
+              changeCount={this.textStabilizationCurve(i)}
+              stabilize={this.props.stabilize}
+            />
           </span>
         )
       } else {
@@ -69,11 +42,7 @@ export class GlitchName extends Component {
     }
 
     return (
-      <div
-        className="glitch-text"
-        onMouseEnter={this.impulseOn}
-        onMouseLeave={this.impulseOff}
-      >
+      <div className="glitch-text">
         {li}
       </div>
     );
@@ -82,8 +51,9 @@ export class GlitchName extends Component {
 
 class GlitchLetter extends Component {
 
-  _shortTimer = 50;
-  _longTimer = 3000;
+  _shortTimer = 40;
+  _medTimer = 850;
+  _longTimer = 2700;
   _timerId;
 
   // Letters to render
@@ -95,6 +65,7 @@ class GlitchLetter extends Component {
   changeCount;
   stabilize;
   corruptionRate;
+  stabilityRate;
 
   constructor(props) {
     super(props);
@@ -118,7 +89,6 @@ class GlitchLetter extends Component {
   componentDidUpdate = (prevProps) => {
     if (prevProps.stabilize !== this.props.stabilize) {
       this.changeCount = this.props.changeCount;
-      this.stabilize = this.props.stabilize;
       clearTimeout(this._timerId);
       this.update();
     }
@@ -136,41 +106,44 @@ class GlitchLetter extends Component {
     return this.wait(this._shortTimer, 0.05);
   }
 
+  medTimer = () => {
+    return this.wait(this._medTimer, 0.90);
+  }
+
   longTimer = () => {
     return this.wait(this._longTimer, 0.70);
   }
 
   randomLetter = () => {
-    const choose = (Math.random() > this.corruptionRate) ? this.possible : this.possible_ext;
+    let choose = (Math.random() > this.corruptionRate) ? this.possible : this.possible_ext;
 
     const idx = Math.floor(Math.random()*choose.length);
     return choose[idx];
   }
 
   update = () => {
-    if (this.stabilize && this.changeCount <= 0) {
-      this.setState({
-        render: this.actual,
-      });
-      return;
-    } else {
-      this.setState({
-        render: this.randomLetter(),
-        colorize: (Math.random() < .2),
-      });
-      --this.changeCount;
-    }
+    const stable = (this.props.stabilize && this.changeCount <= 0);
+    const rapid = (this.changeCount > 0);
 
-    // Uses short time length when "stabilizing."
-    const time = (this.changeCount >= 0) ? this.shortTimer() : this.longTimer();
+    const letter = (stable) ? this.actual : this.randomLetter();
+
+    this.setState({
+      render: letter,
+      colorize: (Math.random() < .2),
+    });
+
+    // Determine time length for next style/letter change.
+    const [short, med, long] = [this.shortTimer, this.medTimer, this.longTimer];
+    const time = (stable) ? med() : (rapid) ? short() : long();
+
+    --this.changeCount;
+    
     this._timerId = setTimeout(this.update, time);
   }
 
   render() {
     return (
-      <span
-        className={(this.state.colorize) ? 'glitch-text-special' : ''}
-      >
+      <span className={(this.state.colorize) ? 'glitch-text-special' : ''}>
         {this.state.render}
       </span>
     )

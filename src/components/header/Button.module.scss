@@ -45,8 +45,9 @@ $anim-time: .3s;
 }
 
 .text {
+  pointer-events: all;    // TODO Because of the light effect, menu hangs over content quite a bit.
   padding: 0.5rem 1.2rem;
-  font: 'Nunito Sans';
+  font: 'Nunito Sans';    // TODO Firefox; why? Dun evn work.
   font-size: $font-size;
   letter-spacing: $letter-spacing;
 
