@@ -6,16 +6,18 @@ import styles from './Button.module.scss';
 export class Button extends Component {
   render() {
     return (
-      <button
-        className={styles.button}
-        onMouseEnter={this.onMouseEnter}
-        onMouseLeave={this.onMouseLeave}
-        onTouchStart={this.onMouseEnter}
-        onTouchEnd={this.onMouseLeave}
+      <a className={styles.linkWrapper}
+        href={this.props.link}
+        target={this.props.external && '_blank'}
       >
-        {this.props.children}
-        {this.props.external && <IExternalLink className={styles.icon} />}
-      </button>
+        <button className={styles.text} type='button'>
+          {this.props.children}
+          {this.props.external && <IExternalLink className={styles.icon} />}
+          <div className={styles.lightbar}>
+            <div className={styles.light} />
+          </div>
+        </button>
+      </a>
     );
   }
 }

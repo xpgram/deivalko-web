@@ -31,6 +31,8 @@
 .nav-menu {
   margin-top: 4.5rem;
   margin-right: 1.0rem;
+
+  width: 20rem;
   
   display: flex;
   align-content: flex-end;
@@ -40,4 +42,5 @@
 .nav-item {
   display: flex;
   justify-content: flex-end;
+  width: 100%;
 }
