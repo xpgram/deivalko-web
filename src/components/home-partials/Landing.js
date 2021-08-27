@@ -7,14 +7,14 @@ import logo from "../../resources/img/d.V.png";
 export class Landing extends Component {
   render() {
     return (
-      <div class={styles.landing}>
+      <div className={styles.landing}>
         <img
-          class={styles.background}
+          className={styles.background}
           src={image}
           alt=""
         />
         <img
-          class={styles.logo}
+          className={styles.logo}
           src={logo}
           alt=""
         />

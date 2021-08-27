@@ -3,13 +3,13 @@ import { HomeView } from './views/Home';
 
 function App() {
   return (
-    <app>
+    <div>
       <Router>
         <Switch>
           <Route path='/' component={HomeView} exact />
         </Switch>
       </Router>
-    </app>
+    </div>
   );
 }
 
