@@ -18,9 +18,7 @@ export class Landing extends Component {
           src={logo}
           alt=""
         />
-        <div className={styles.wrapper}>
-          <div className={styles.glow} />
-        </div>
+        <div className={styles.glow} />
       </div>
     );
   }

@@ -3,7 +3,7 @@ import { PortfolioItem } from "../PortfolioItem";
 
 import styles from "./Portfolio.module.scss";
 
-import test from "../../resources/img/PixilBG.png";
+import test from "../../resources/img/PixilBG_faded.png";
 
 export class Portfolio extends Component {
   render() {
