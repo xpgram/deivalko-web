@@ -3,6 +3,7 @@ import { Component } from "react";
 import styles from "./PortfolioItem.module.scss";
 
 import demoImage from "../resources/img/portfolio/advance-wars-clone.png";
+import { GlitchText } from "./GlitchText";
 
 export class PortfolioItem extends Component {
 
@@ -29,6 +30,10 @@ export class PortfolioItem extends Component {
         onTouchStart={this.onMouseEnter}
         onTouchEnd={this.onMouseLeave}
       >
+      
+        {/* // TODO Implement this */}
+        <GlitchText startblank reveal noscramble>{this.props.title}</GlitchText>
+
         <div className={styles.frostedGlass}>
           <div className={styles.visualWrapper}>
             <img
