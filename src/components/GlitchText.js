@@ -6,7 +6,7 @@ import styles from "./GlitchText.module.scss";
 // I should be able to do this without GlitchLetter. That *might* help.
 
 const extendedCharset = "ƎИΛⱯꓘΓΠƆ";
-const timerGranularity = 200; // ms
+const timerGranularity = 60; // ms
 
 /** time in ms, variance a decimal between 0 and 1 */
 function interval(time, variance) {
@@ -20,31 +20,61 @@ const Intervals = {
 }
 
 const AnimationPatterns = {
-  'reveal': ['scramble', 'stable'],
+  'blank': ['blank'],
+  'show': ['stable'],
   'blank-reveal': ['blank', 'scramble', 'stable'],
-  'scramble': ['scramble', 'drift'],
-  'show-scramble': ['scramble', 'stable', 'scramble', 'drift'],
-  'blank-show-scramble': ['blank', 'scramble', 'stable', 'scramble', 'drift'],
+  'blank-reveal-scramble': ['blank', 'scramble', 'stable', 'scramble', 'drift'],
+  'to-reveal': ['previous', 'scramble', 'stable'],
+  'to-drift': ['previous', 'scramble', 'drift'],
 }
 
 export class GlitchText extends Component {
 
   _timerId = null; // Reference handle for the current setTimeout() instance.
 
+  _text = this.props.text || '';
+  _length = this._text.length;
+
+  /** Affects the wait time between phases; helps 'stable > scramble' text to be readable. */
+  _phaseChangeCoefficient = 8 / Math.max(this._length, 1) + 1;
+
+  /** The number of time steps an animation phase lasts. */
+  _phaseInterval = this._length * this._phaseChangeCoefficient;
+
+  /** Affects the inter-letter phase-change delay; longer text 'stabilizes' more quickly. */
+  _stepDelay = Math.ceil(timerGranularity * 2.5 / Math.pow(this._length, 0.4));
+
   constructor(props) {
     super(props);
 
-    const text = this.props.text || '';
-    const length = text.length;
-    const pattern = AnimationPatterns[this.props.pattern || 'reveal'] || AnimationPatterns['reveal'];
+    if (this._length > 25)
+      console.warn(`GlitchText is long and may affect performance.`, {text: this._text});
 
-    if (length > 25)
-      console.warn('GlitchText is long and may affect performance. Text=', text);
+    this.state = this.getInitialState();
+  }
 
-    this.state = {
+  getInitialState = () => {
+    // TODO Extract
+    const key = this.props.pattern || 'show';
+    const pattern = AnimationPatterns[key] || AnimationPatterns['show'];
+    return {
       timerStep: 0,
-      animStates: new Array(length).fill(pattern[0]),
-    };
+      pattern: pattern,
+      animStates: new Array(this._length).fill(pattern[0]),
+    }
+  }
+
+  componentDidUpdate(prevProps) {
+    if (prevProps.pattern !== this.props.pattern) {
+      // TODO Extract
+      const key = this.props.pattern || 'reveal';
+      const pattern = AnimationPatterns[key] || AnimationPatterns['reveal'];
+      this.setState({
+        timerStep: this.state.timerStep % this._phaseInterval,
+        pattern: pattern,
+      });
+      this.start();
+    }
   }
 
   componentDidMount() {
@@ -57,7 +87,7 @@ export class GlitchText extends Component {
 
   start = () => {
     this.stop();
-    this._repeat(1000);
+    this._repeat(10);
   }
 
   stop = () => {
@@ -71,21 +101,16 @@ export class GlitchText extends Component {
   }
 
   update = () => {
-    const { text } = this.props;
-    const { timerStep } = this.state;
+    const { floor, min, max, } = Math;
+    const { timerStep, pattern } = this.state;
 
-    const length = (text || '').length;
-    const pattern = AnimationPatterns[this.props.pattern || 'reveal'] || AnimationPatterns['reveal'];
     const patternLast = pattern.length - 1;
 
-    // Affects the wait time between phases; helps 'stable > scramble' text to be readable.
-    const phaseChangeCoefficient = 8 / Math.max(length, 1) + 1;
-
     // Determine letter states.
-    const animStates = new Array(length).fill(0).map( (v, idx) => {
-      let patternIdx = Math.floor(Math.max(timerStep - idx + length, 0) / (length * phaseChangeCoefficient));
-      patternIdx = Math.min(patternIdx, patternLast);
-      return pattern[patternIdx];
+    const animStates = new Array(this._length).fill(0).map( (v, idx) => {
+      let patternIdx = floor(max(timerStep - idx + this._phaseInterval, 0) / this._phaseInterval);
+      patternIdx = min(patternIdx, patternLast);
+      return pattern[patternIdx] === 'previous' ? this.state.animStates[idx] : pattern[patternIdx];
     });
 
     this.setState({
@@ -93,8 +118,7 @@ export class GlitchText extends Component {
       animStates: animStates,
     });
 
-    const stepDelay = Math.ceil(100);
-    this._repeat(stepDelay);
+    this._repeat(this._stepDelay);
   }
 
   render() {
@@ -172,17 +196,15 @@ class GlitchLetter extends Component {
   update = () => {
     const state = this.props.state || 'stable';
     const actual = this.props.character || ' ';
-    const color = this.props.colorize || false;
+    const color = Math.random() < .2 ? true : false; // this.props.colorize || false;
     const char = this.selectChar();
 
-    // TODO On prop change, 'drift' will auto-instance-scramble, which isn't drifting.
-    // I could wait the first interval without doing anything, but drift is the only state which desires this.
-
     const options = {
-      'stable':   {letter: actual, colorize: color, time: Intervals.Sparkle},
+      'stable':   {letter: actual, colorize: false, time: Intervals.Sparkle},
       'scramble': {letter: char,   colorize: color, time: Intervals.Rapid},
       'drift':    {letter: char,   colorize: color, time: Intervals.Drift},
       'blank':    {letter: ' ',    colorize: color, time: null},
+      'stable-sparkle': {letter: actual, colorize: color, time: Intervals.Sparkle},
     }
 
     const { time, ...settings } = options[state] || options['stable'];
@@ -196,7 +218,7 @@ class GlitchLetter extends Component {
     return (
       <span className={`${styles.letter} ${this.state.colorize && styles.colorized}`}
       // TODO Remove inline style
-      style={{color: 'white', fontSize: '1.2rem', width: '1.3rem', height: '1.5rem', textAlign: 'center', display: 'inline-block'}}>
+      style={{color: this.state.colorize ? '#EAD' : 'white', fontSize: '1.2rem', width: '1.3rem', height: '1.5rem', textAlign: 'center', display: 'inline-block'}}>
         {this.state.letter}
       </span>
     )

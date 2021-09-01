@@ -10,15 +10,8 @@ export class HeaderLogo extends Component {
     super(props);
     this.state = {
       showName: true,
-      hover: true,
+      hover: false,
     };
-  }
-
-  componentDidMount = () => {
-    this._timerId = setTimeout(() => {
-      if (this.state.showName)
-        this.onMouseLeave();
-    }, 2500);
   }
 
   onMouseEnter = () => {
@@ -36,6 +29,13 @@ export class HeaderLogo extends Component {
   }
 
   render() {
+    const { showName, hover } = this.state;
+    const pattern = showName ?
+      'blank-reveal-scramble'
+      : hover ?
+      'to-reveal'
+      : 'to-drift';
+
     return (
       <div className="logo-container"
         onMouseEnter={this.onMouseEnter}
@@ -47,7 +47,7 @@ export class HeaderLogo extends Component {
             {/* <GlitchName stabilize={this.state.hover} /> */}
             <GlitchText
               text={'Devin Valko'}
-              pattern={'show-scramble'}
+              pattern={pattern}
             />
             <div className="logo-text-glow" />
           </div>
