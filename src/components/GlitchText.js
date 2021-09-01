@@ -2,6 +2,9 @@ import { Component } from "react";
 
 import styles from "./GlitchText.module.scss";
 
+// TODO Too many cascading renders, I think.
+// I should be able to do this without GlitchLetter. That *might* help.
+
 const extendedCharset = "ƎИΛⱯꓘΓΠƆ";
 const timerGranularity = 200; // ms
 
@@ -16,44 +19,100 @@ const Intervals = {
   Drift: interval(2700, .7),
 }
 
-export class GlitchText extends Component {
+const AnimationPatterns = {
+  'reveal': ['scramble', 'stable'],
+  'blank-reveal': ['blank', 'scramble', 'stable'],
+  'scramble': ['scramble', 'drift'],
+  'show-scramble': ['scramble', 'stable', 'scramble', 'drift'],
+  'blank-show-scramble': ['blank', 'scramble', 'stable', 'scramble', 'drift'],
+}
 
-  _text;  // Actual text being obfuscated.
-  // 
+export class GlitchText extends Component {
 
   _timerId = null; // Reference handle for the current setTimeout() instance.
 
   constructor(props) {
     super(props);
-    this._text = this.props.text || '';
+
+    const text = this.props.text || '';
+    const length = text.length;
+    const pattern = AnimationPatterns[this.props.pattern || 'reveal'] || AnimationPatterns['reveal'];
+
+    if (length > 25)
+      console.warn('GlitchText is long and may affect performance. Text=', text);
+
+    this.state = {
+      timerStep: 0,
+      animStates: new Array(length).fill(pattern[0]),
+    };
   }
 
   componentDidMount() {
-    this.update();
+    this.start();
   }
 
   componentWillUnmount() {
-    clearTimeout(this._timerId);
+    this.stop();
+  }
+
+  start = () => {
+    this.stop();
+    this._repeat(1000);
+  }
+
+  stop = () => {
+    if (this._timerId)
+      clearTimeout(this._timerId);
+  }
+
+  _repeat = (time) => {
+    this.stop();
+    this._timerId = setTimeout(this.update, time);
   }
 
   update = () => {
+    const { text } = this.props;
+    const { timerStep } = this.state;
 
-    // start state
-    // timer step
-    // timer step
-    // timer step
+    const length = (text || '').length;
+    const pattern = AnimationPatterns[this.props.pattern || 'reveal'] || AnimationPatterns['reveal'];
+    const patternLast = pattern.length - 1;
 
-    // timer granularity = 200ms? this means no individual letter changes state more finely than these time steps.
+    // Affects the wait time between phases; helps 'stable > scramble' text to be readable.
+    const phaseChangeCoefficient = 8 / Math.max(length, 1) + 1;
+
+    // Determine letter states.
+    const animStates = new Array(length).fill(0).map( (v, idx) => {
+      let patternIdx = Math.floor(Math.max(timerStep - idx + length, 0) / (length * phaseChangeCoefficient));
+      patternIdx = Math.min(patternIdx, patternLast);
+      return pattern[patternIdx];
+    });
+
+    this.setState({
+      timerStep: timerStep + 1,
+      animStates: animStates,
+    });
+
+    const stepDelay = Math.ceil(100);
+    this._repeat(stepDelay);
   }
 
   render() {
-    const charsList = this.props.text + extendedCharset;
+    const { text } = this.props;
+    const charsList = (text || '').toUpperCase().split('');
+    const charsPossible = (text || '').toUpperCase() + extendedCharset;
 
-    const letter = (
-      <GlitchLetter character={'a'} state={'unstable'} colorize={false} possibleChars={charsList} />
+    const letters = charsList.map( (char, idx) =>
+      <GlitchLetter
+        key={`gl_${idx}`}
+        character={char}
+        state={this.state.animStates[idx]}
+        colorize={false}
+        possibleChars={charsPossible}
+      />
     );
 
-    return (<>{letter}</>);
+    return (<>{letters}</>);
   }
 }
 
@@ -74,7 +133,7 @@ class GlitchLetter extends Component {
   }
 
   componentDidUpdate(prevProps) {
-    if (Object.keys(prevProps).some(k => prevProps[k] !== this.props[k]))
+    if (prevProps.state !== this.props.state)
       this.start();
   }
 
@@ -83,17 +142,8 @@ class GlitchLetter extends Component {
   }
 
   start = () => {
-    // TODO Combine this with update()'s somehow.
-    const options = {
-      'actual':   Intervals.Sparkle,
-      'unstable': Intervals.Rapid,
-      'drifting': Intervals.Drift,
-      'blank':    null,
-    }
-    const time = options[this.props.state || 'actual'] || options['actual'];
-
     this.stop();
-    this._repeat(time);
+    this.update();
   }
 
   stop = () => {
@@ -102,6 +152,7 @@ class GlitchLetter extends Component {
   }
 
   _repeat = (interval) => {
+    this.stop();
     const { time, variance } = interval;
     const wait = time * (1 - variance) + Math.random() * time * variance;
     this._timerId = setTimeout(this.update, wait);
@@ -109,7 +160,7 @@ class GlitchLetter extends Component {
 
   selectChar = () => {
     const cur = this.state.letter;
-    const choose = (this.props.possibleChars || this.props.character).replaceAll(cur, '');
+    const choose = (this.props.possibleChars || this.props.character).replaceAll(cur, '').replaceAll(' ', '');
 
     if (choose.length) {
       const idx = Math.floor(Math.random()*choose.length);
@@ -119,22 +170,22 @@ class GlitchLetter extends Component {
   }
 
   update = () => {
-    const state = this.props.state || 'actual';
+    const state = this.props.state || 'stable';
     const actual = this.props.character || ' ';
     const color = this.props.colorize || false;
     const char = this.selectChar();
 
     // TODO On prop change, 'drift' will auto-instance-scramble, which isn't drifting.
-    // I should wait the first interval without doing anything.
+    // I could wait the first interval without doing anything, but drift is the only state which desires this.
 
     const options = {
-      'actual':   {letter: actual, colorize: color, time: Intervals.Sparkle},
-      'unstable': {letter: char,   colorize: color, time: Intervals.Rapid},
-      'drifting': {letter: char,   colorize: color, time: Intervals.Drift},
+      'stable':   {letter: actual, colorize: color, time: Intervals.Sparkle},
+      'scramble': {letter: char,   colorize: color, time: Intervals.Rapid},
+      'drift':    {letter: char,   colorize: color, time: Intervals.Drift},
       'blank':    {letter: ' ',    colorize: color, time: null},
     }
 
-    const { time, ...settings } = options[state] || options['actual'];
+    const { time, ...settings } = options[state] || options['stable'];
     this.setState(settings);
 
     if (time)
@@ -143,9 +194,11 @@ class GlitchLetter extends Component {
 
   render() {
     return (
-      <div className={`${styles.letter} ${this.state.colorize && styles.colorized}`}>
+      <span className={`${styles.letter} ${this.state.colorize && styles.colorized}`}
+      // TODO Remove inline style
+      style={{color: 'white', fontSize: '1.2rem', width: '1.3rem', height: '1.5rem', textAlign: 'center', display: 'inline-block'}}>
         {this.state.letter}
-      </div>
+      </span>
     )
   }
 }

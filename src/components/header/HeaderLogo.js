@@ -2,6 +2,7 @@ import "./HeaderLogo.scss";
 import { Component } from "react";
 import logo from "../../resources/img/dV_logo.png";
 import { GlitchName } from "./GlitchName";
+import { GlitchText } from "../GlitchText";
 
 export class HeaderLogo extends Component {
 
@@ -43,7 +44,11 @@ export class HeaderLogo extends Component {
         <img src={logo} className="logo-image" alt="logo" />
         <div>
           <div className="logo-text">
-            <GlitchName stabilize={this.state.hover} />
+            {/* <GlitchName stabilize={this.state.hover} /> */}
+            <GlitchText
+              text={'Devin Valko'}
+              pattern={'show-scramble'}
+            />
             <div className="logo-text-glow" />
           </div>
         </div>

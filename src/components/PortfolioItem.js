@@ -32,7 +32,7 @@ export class PortfolioItem extends Component {
       >
       
         {/* // TODO Implement this */}
-        <GlitchText startblank reveal noscramble>{this.props.title}</GlitchText>
+        <GlitchText text={this.props.title} pattern={'blank-reveal'} />
 
         <div className={styles.frostedGlass}>
           <div className={styles.visualWrapper}>
