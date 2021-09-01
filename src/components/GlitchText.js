@@ -133,10 +133,15 @@ export class GlitchText extends Component {
         state={this.state.animStates[idx]}
         colorize={false}
         possibleChars={charsPossible}
+        textStyle={this.props.textStyle}
       />
     );
 
-    return (<>{letters}</>);
+    return (
+      <span className={`${styles.text} ${this.props.blockStyle}`}>
+        {letters}
+      </span>
+    );
   }
 }
 
@@ -216,9 +221,8 @@ class GlitchLetter extends Component {
 
   render() {
     return (
-      <span className={`${styles.letter} ${this.state.colorize && styles.colorized}`}
-      // TODO Remove inline style
-      style={{color: this.state.colorize ? '#EAD' : 'white', fontSize: '1.2rem', width: '1.3rem', height: '1.5rem', textAlign: 'center', display: 'inline-block'}}>
+      // TODO textStyle will not override existing letter style.
+      <span className={`${this.props.textStyle} ${styles.letter} ${this.state.colorize && styles.colorized}`}>
         {this.state.letter}
       </span>
     )

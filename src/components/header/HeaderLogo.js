@@ -30,10 +30,10 @@ export class HeaderLogo extends Component {
 
   render() {
     const { showName, hover } = this.state;
-    const pattern = showName ?
-      'blank-reveal-scramble'
-      : hover ?
-      'to-reveal'
+    const pattern = showName
+      ? 'blank-reveal-scramble'
+      : hover
+      ? 'to-reveal'
       : 'to-drift';
 
     return (
@@ -42,15 +42,15 @@ export class HeaderLogo extends Component {
         onMouseLeave={this.onMouseLeave}
       >
         <img src={logo} className="logo-image" alt="logo" />
-        <div>
-          <div className="logo-text">
-            {/* <GlitchName stabilize={this.state.hover} /> */}
-            <GlitchText
-              text={'Devin Valko'}
-              pattern={pattern}
-            />
-            <div className="logo-text-glow" />
-          </div>
+        <div className="logo-text">
+          {/* <GlitchName stabilize={this.state.hover} /> */}
+          <GlitchText
+            text={'Devin Valko'}
+            pattern={pattern}
+            blockStyle={'glitch-text'}
+            textStyle={'glitch-text-letter'}
+          />
+          <div className="logo-text-glow" />
         </div>
       </div>
     );

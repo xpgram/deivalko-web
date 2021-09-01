@@ -1,0 +1,18 @@
+
+.text {
+  // width: fit-content;
+}
+
+.letter {
+  display: inline-block;
+  width: 1.8rem;
+  height: 1.8rem;
+
+  color: var(--text-primary);
+  font-size: 1.7rem;
+  text-align: center;
+}
+
+.colorized {
+  color: var(--text-special);
+}
