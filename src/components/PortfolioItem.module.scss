@@ -75,3 +75,10 @@ $standardWidth: 1rem;
   background: #0006;
   // background: linear-gradient(to top, #0008 50%, #0000);
 }
+
+.titleText {
+  color: var(--text-primary);
+  width: 1.2rem;
+  height: 2rem;
+  font-size: 1.4rem;
+}

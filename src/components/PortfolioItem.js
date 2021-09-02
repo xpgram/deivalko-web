@@ -31,8 +31,11 @@ export class PortfolioItem extends Component {
         onTouchEnd={this.onMouseLeave}
       >
       
-        {/* // TODO Implement this */}
-        <GlitchText text={this.props.title} pattern={'blank-reveal'} />
+        <GlitchText
+          text={this.props.title}
+          pattern={'blank-reveal'}
+          textStyle={styles.titleText}
+        />
 
         <div className={styles.frostedGlass}>
           <div className={styles.visualWrapper}>
