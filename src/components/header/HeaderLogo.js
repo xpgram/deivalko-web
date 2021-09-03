@@ -43,7 +43,6 @@ export class HeaderLogo extends Component {
       >
         <img src={logo} className="logo-image" alt="logo" />
         <div className="logo-text">
-          {/* <GlitchName stabilize={this.state.hover} /> */}
           <GlitchText
             text={'Devin Valko'}
             pattern={pattern}
