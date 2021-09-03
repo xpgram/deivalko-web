@@ -21,9 +21,6 @@ export class HomeView extends Component {
         <span id="portfolio" />
         <Portfolio />
 
-        <span id="contact" />
-        <Contact />
-
         <Footer />
       </>
     )
