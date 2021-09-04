@@ -39,6 +39,7 @@ $standardWidth: 1rem;
 
   background: radial-gradient(ellipse 135% 190% at 0% 0%, transparent 50%, #A794 70%, #8694 100%);
   // TODO Overlay modes? Additive?
+  // TODO Add cloud texture? Can I white mask an element or repeated image?
 }
 
 .titleText {
@@ -66,8 +67,11 @@ $standardWidth: 1rem;
 
   padding-top: 1rem;
   margin-right: 2rem;
-  width: calc(100% - 10ch);
-  max-width: 70ch;
+
+  width: calc(100% - 20ch);
+  min-width: 30ch;        // TODO Add a media break here so that {width: calc(100% - 10ch);} instead.
+  max-width: 60ch;          // TODO What to do with that extra space on the right side?
+                            // TODO Further, when sidebar and navbar collide, the latter should turn into a hamburer menu or something.
   color: var(--text-primary);
   font-size: 1.5rem;
 
