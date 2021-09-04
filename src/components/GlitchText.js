@@ -59,6 +59,7 @@ export class GlitchText extends Component {
     const pattern = AnimationPatterns[key] || AnimationPatterns['show'];
     return {
       timerStep: 0,
+      maxTimeStep: this._phaseInterval * pattern.length,
       pattern: pattern,
       animStates: new Array(this._length).fill(pattern[0]),
     }
@@ -118,7 +119,8 @@ export class GlitchText extends Component {
       animStates: animStates,
     });
 
-    this._repeat(this._stepDelay);
+    if (this.state.timerStep <= this.state.maxTimeStep)
+      this._repeat(this._stepDelay);
   }
 
   render() {
@@ -205,7 +207,7 @@ class GlitchLetter extends Component {
     const char = this.selectChar();
 
     const options = {
-      'stable':   {letter: actual, colorize: false, time: Intervals.Sparkle},
+      'stable':   {letter: actual, colorize: false, time: null},
       'scramble': {letter: char,   colorize: color, time: Intervals.Rapid},
       'drift':    {letter: char,   colorize: color, time: Intervals.Drift},
       'blank':    {letter: ' ',    colorize: color, time: null},
