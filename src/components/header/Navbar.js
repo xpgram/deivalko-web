@@ -29,12 +29,6 @@ export class Navbar extends Component {
               </li>
 
               <li className="nav-item">
-                <Button link='#contact'>
-                  CONTACT
-                </Button>
-              </li>
-
-              <li className="nav-item">
                 <Button link='https://www.linkedin.com/in/deivn-vkola' external >
                   LINKEDIN
                 </Button>
