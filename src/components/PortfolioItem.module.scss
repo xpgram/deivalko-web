@@ -5,8 +5,7 @@ $standardWidth: 1rem;
 .block {
   margin: 0;
   padding: 0;
-
-  width: 100vw;
+  width: 100%;
 }
 
 .preview {
@@ -42,10 +41,22 @@ $standardWidth: 1rem;
   // TODO Add cloud texture? Can I white mask an element or repeated image?
 }
 
-.titleText {
+.titleWrapper {
   position: absolute;
-  top: 1rem;
-  left: 1rem;
+  top: 0;
+  left: 0;
+
+  // margin-top: 1rem;
+  margin-left: 1rem;
+  width: 100%;
+
+  display: flex;
+  justify-content: center;
+}
+
+.titleText {
+  width: 100%;
+  max-width: 100rem;
 }
 
 .titleLetters {
@@ -58,20 +69,32 @@ $standardWidth: 1rem;
 
 .body {
   position: relative;
-  margin: 0 auto;
-  width: 90%;
+  width: 100%;
+
+  display: flex;
+  justify-content: center;
+
+  // background: #242024;
+}
+
+.mainWrapper {
+  width: 100%;
+  max-width: 100rem;
+
+  // background: color.adjust(#242024, $lightness: 5%);
 }
 
 .main {
   display: inline-block;
 
-  padding-top: 1rem;
-  margin-right: 2rem;
+  margin: 1rem 2rem 0 1rem;
 
-  width: calc(100% - 20ch);
+  width: calc(100% - 22rem);
   min-width: 30ch;        // TODO Add a media break here so that {width: calc(100% - 10ch);} instead.
-  max-width: 60ch;          // TODO What to do with that extra space on the right side?
-                            // TODO Further, when sidebar and navbar collide, the latter should turn into a hamburer menu or something.
+  max-width: 60ch;          
+    // TODO What to do with that extra space on the right side?
+    // TODO Further, when sidebar and navbar collide, the latter should turn into a hamburer menu or something.
+
   color: var(--text-primary);
   font-size: 1.5rem;
 
@@ -138,6 +161,9 @@ $standardWidth: 1rem;
   line-height: 1.8rem;
   letter-spacing: .2rem;
   
+  &:hover, &:focus {
+    background: color.adjust(#A79, $lightness: 12%, $saturation: 12%);
+  }
 }
 
 .asfe-title {
