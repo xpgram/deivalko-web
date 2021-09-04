@@ -12,6 +12,8 @@ export class PortfolioItem extends Component {
     this.state = {
       hover: false,
     }
+
+    //this._image = require(`resources/img/portfolio/${this.props.image}`);
   }
 
   onMouseEnter = () => {
@@ -23,6 +25,15 @@ export class PortfolioItem extends Component {
   }
 
   render() {
+
+    const technologies = this.props.technologies || [];
+    const technologyElems = technologies
+      .map( (word) =>
+        <span className={styles.technologyWord}>{word}</span>
+      );
+
+    const showSidebarMenu = (this.props.linkDemo || this.props.linkSource);
+
     return (
       <div className={styles.block}>
 
@@ -30,7 +41,7 @@ export class PortfolioItem extends Component {
           <img
             className={styles.previewImage}
             src={demoImage}
-            alt=""
+            alt={this.props.title}
           />
           <div className={styles.gradientOverlay} />
           <div className={styles.titleWrapper}>
@@ -45,24 +56,44 @@ export class PortfolioItem extends Component {
 
         <div className={styles.body}>
           <div className={styles.mainWrapper}>
-            
+
             <div className={styles.main}>
               <div className={styles.technologies}>
-                PixiJs / Typescript
+                {technologyElems}
               </div>
               <div className={styles.description}>
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.<br/>
-                Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
+                {this.props.description}
               </div>
               <div className={styles.endbar} />
             </div>
 
-            <div className={styles.sidebar}>
-              <div className={styles.sidebarSeparator} />
-              <button className={styles.link}>VIEW</button>
-              <button className={styles.link}>PROJ</button>
-              {/* // TODO href to new address? */}
-            </div>
+            {showSidebarMenu &&
+              <div className={styles.sidebarWrapper}>
+                <div className={styles.sidebar}>
+
+                  {/* TODO Extract to component, and to button list before return */}
+                  {this.props.linkDemo &&
+                    <a
+                      className={styles.link}
+                      href={this.props.linkDemo}
+                      target="_blank"
+                    >
+                      VIEW
+                    </a>
+                  }
+                  {this.props.linkSource &&
+                    <a
+                      className={styles.link}
+                      href={this.props.linkSource}
+                      target="_blank"
+                    >
+                      PROJ
+                    </a>
+                  }
+
+                </div>
+              </div>
+            }
 
           </div>
         </div>
