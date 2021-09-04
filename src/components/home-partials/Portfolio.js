@@ -3,15 +3,11 @@ import { PortfolioItem } from "../PortfolioItem";
 
 import styles from "./Portfolio.module.scss";
 
-import test from "../../resources/img/PixilBG_faded.png";
-
 export class Portfolio extends Component {
   render() {
     return (
       <div className={styles.background}>
-        <div className={styles.container}
-          style={{backgroundImage: `url(${test})`}}
-        >
+        <div className={styles.container}>
           <PortfolioItem
             title="Advance Wars Clone"
             description="Lorem ipsum dolor sit amet consectetur adipisicing elit. Dignissimos similique qui sunt exercitationem commodi sint illo velit ea voluptas, maxime aspernatur enim veniam, accusamus modi sed voluptatibus quia? Accusamus rem illo corporis dolorum recusandae excepturi reiciendis a omnis rerum qui."

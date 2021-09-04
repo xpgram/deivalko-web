@@ -1,9 +1,9 @@
 import { Component } from "react";
+import { GlitchText } from "./GlitchText";
 
 import styles from "./PortfolioItem.module.scss";
 
 import demoImage from "../resources/img/portfolio/advance-wars-clone.png";
-import { GlitchText } from "./GlitchText";
 
 export class PortfolioItem extends Component {
 
@@ -24,28 +24,43 @@ export class PortfolioItem extends Component {
 
   render() {
     return (
-      <div className={styles.container}
-        onMouseEnter={this.onMouseEnter}
-        onMouseLeave={this.onMouseLeave}
-        onTouchStart={this.onMouseEnter}
-        onTouchEnd={this.onMouseLeave}
-      >
-      
-        <GlitchText
-          text={this.props.title}
-          pattern={'blank-reveal'}
-          textStyle={styles.titleText}
-        />
+      <div className={styles.block}>
 
-        <div className={styles.frostedGlass}>
-          <div className={styles.visualWrapper}>
-            <img
-              className={`${styles.visual} ${this.state.hover && styles.visualHover}`}
-              src={demoImage}
-              alt={this.props.title} />
-            <h2 className={styles.title}>{this.props.title}</h2>
+        <div className={styles.preview}>
+          <img
+            className={styles.previewImage}
+            src={demoImage}
+            alt=""
+          />
+          <div className={styles.gradientOverlay} />
+          <GlitchText
+            text={this.props.title + '_'}
+            pattern={'blank-reveal'}
+            blockStyle={styles.titleText}
+            textStyle={styles.titleLetters}
+          />
+        </div>
+
+        <div className={styles.body}>
+          <div className={styles.main}>
+            <div className={styles.technologies}>
+              PixiJs / Typescript
+            </div>
+            <div className={styles.description}>
+              Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.<br/>
+              Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
+            </div>
+            <div className={styles.endbar} />
+          </div>
+
+          <div className={styles.sidebar}>
+            <div className={styles.sidebarSeparator} />
+            <button className={styles.link}>VIEW</button>
+            <button className={styles.link}>PROJ</button>
+            {/* // TODO href to new address? */}
           </div>
         </div>
+
       </div>
     );
   }

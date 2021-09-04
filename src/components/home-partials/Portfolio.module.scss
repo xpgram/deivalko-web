@@ -3,14 +3,17 @@
 $gap-width: 3rem;
 
 .background {
+  margin: 0;
+  padding: 0;
   display: flex;
   justify-content: center;
   background: var(--bg-color);
 }
 
 .container {
-  // max-width: 140ch;
-  // margin: 5rem;
+  margin: 0;
+  padding: 0;
+
   padding: $gap-width;
   background: color.adjust(#242024, $lightness: 8%);
   background-size: cover;
@@ -22,5 +25,4 @@ $gap-width: 3rem;
 	justify-content: center;
 	align-items: center;
 	align-content: flex-start;
-  gap: $gap-width;
 }
