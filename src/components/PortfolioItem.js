@@ -3,17 +3,19 @@ import { GlitchText } from "./GlitchText";
 
 import styles from "./PortfolioItem.module.scss";
 
-import demoImage from "../resources/img/portfolio/advance-wars-clone.png";
-
 export class PortfolioItem extends Component {
 
   constructor(props) {
     super(props);
     this.state = {
-      hover: false,
+      hover: false
     }
 
-    //this._image = require(`resources/img/portfolio/${this.props.image}`);
+    this._image = (this.props.image)
+      ? require(`../resources/img/portfolio/${this.props.image}`).default
+      : '';
+
+    // TODO Styles fail miserably if no image exists or can be found.
   }
 
   onMouseEnter = () => {
@@ -28,8 +30,12 @@ export class PortfolioItem extends Component {
 
     const technologies = this.props.technologies || [];
     const technologyElems = technologies
-      .map( (word) =>
-        <span className={styles.technologyWord}>{word}</span>
+      .map( (word, idx) =>
+        <span
+          key={`tech_${idx}`}
+          className={styles.technologyWord}>
+            {word}
+        </span>
       );
 
     const showSidebarMenu = (this.props.linkDemo || this.props.linkSource);
@@ -40,7 +46,7 @@ export class PortfolioItem extends Component {
         <div className={styles.preview}>
           <img
             className={styles.previewImage}
-            src={demoImage}
+            src={this._image}
             alt={this.props.title}
           />
           <div className={styles.gradientOverlay} />

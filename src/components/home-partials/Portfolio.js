@@ -18,19 +18,19 @@ export class Portfolio extends Component {
           />
           <PortfolioItem
             title="Movie.Web"
-            image="advance-wars-clone.png"
+            image="movie-web-1.png"
             technologies={['React', 'Django', 'Heroku']}
             description="Lorem ipsum, dolor sit amet consectetur adipisicing elit. Provident quod, sequi odit dolores corrupti quas animi rerum ex in, laudantium itaque eum labore nostrum voluptatem mollitia. Iusto omnis totam dolor ipsa cupiditate quaerat eius suscipit delectus assumenda distinctio! Ab velit necessitatibus assumenda iusto consectetur mollitia, similique molestias quo odio provident perferendis dicta, maiores quibusdam enim quasi, accusamus modi ad deserunt."
-            linkDemo=""
-            linkSource=""
+            linkDemo="http://xpg-movie-api-web.herokuapp.com"
+            linkSource="https://github.com/xpgram/movie-api-web"
           />
           <PortfolioItem
             title="Budgetboy"
-            image="advance-wars-clone.png"
+            image="budgetboy.png"
             technologies={['Python']}
             description="Lorem ipsum dolor sit amet consectetur adipisicing elit. Est atque ab tempora, aspernatur amet, sequi maxime, velit voluptatum fugiat itaque consequatur nemo maiores sapiente quis."
             linkDemo=""
-            linkSource=""
+            linkSource="https://github.com/xpgram/budgetboy"
           />
         </div>
       </div>
