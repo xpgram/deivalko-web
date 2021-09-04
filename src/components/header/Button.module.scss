@@ -11,12 +11,13 @@ $anim-time: .3s;
 
 .linkWrapper {
   position: relative;
-  width: 100%;
   text-align: right;
 }
 
 .lightbar {
-  width: 100%;
+  pointer-events: none;
+
+  width: 20rem;
   height: 100%;
 
   position: absolute;
