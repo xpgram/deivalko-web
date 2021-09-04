@@ -40,9 +40,8 @@ $standardWidth: 1rem;
   top: 0;
   left: 0;
 
-  background: radial-gradient(ellipse 102% 280% at 0% 0%, transparent 50%, #A79 70%, #86B 82%, #68B);
+  background: radial-gradient(ellipse 102% 280% at 0% 0%, transparent 50%, #A79A 75%, #86BA 85%, #68BA);
   mix-blend-mode: overlay;
-  // TODO Overlay modes? Additive?
   // TODO Add cloud texture? Can I white mask an element or repeated image?
 }
 
