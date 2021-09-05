@@ -54,8 +54,9 @@ export class PortfolioItem extends Component {
             <GlitchText
               text={this.props.title + '_'}
               pattern={'blank-reveal'}
-              blockStyle={styles.titleText}
-              textStyle={styles.titleLetters}
+              textStyle={styles.titleText}
+              wordStyle={styles.titleWord}
+              charStyle={styles.titleLetters}
             />
           </div>
         </div>

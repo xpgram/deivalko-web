@@ -124,24 +124,40 @@ export class GlitchText extends Component {
   }
 
   render() {
-    const { text } = this.props;
-    const charsList = (text || '').toUpperCase().split('');
-    const charsPossible = (text || '').toUpperCase() + extendedCharset;
+    const text = (this.props.text || '').toUpperCase();
+    const words = text.split(' ');
+    const charsList = text;
+    const charsPossible = charsList + extendedCharset;
 
-    const letters = charsList.map( (char, idx) =>
-      <GlitchLetter
-        key={`gl_${idx}`}
-        character={char}
-        state={this.state.animStates[idx]}
-        colorize={false}
-        possibleChars={charsPossible}
-        textStyle={this.props.textStyle}
-      />
-    );
+    // TODO Trailing ' ' char on last word
+    let animStateCount = -1;
+    const elements = words.map( (word, widx) => {
+      const letters = (word + ' ')
+        .split('')
+        .map( (char, lidx) => {
+          animStateCount++;
+          return (
+            <GlitchLetter
+              key={`gl_${widx}_${lidx}`}
+              character={char}
+              state={this.state.animStates[animStateCount]}
+              colorize={false}
+              possibleChars={charsPossible}
+              textStyle={this.props.charStyle}
+            />
+          );
+        }
+      );
+      return (
+        <span className={this.props.wordStyle}>
+          {letters}
+        </span>
+      )
+    });
 
     return (
-      <span className={`${styles.text} ${this.props.blockStyle}`}>
-        {letters}
+      <span className={`${styles.text} ${this.props.textStyle}`}>
+        {elements}
       </span>
     );
   }

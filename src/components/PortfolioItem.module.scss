@@ -63,6 +63,10 @@ $standardWidth: 1rem;
   max-width: 100rem;
 }
 
+.titleWord {
+  display: inline-block;
+}
+
 .titleLetters {
   color: var(--text-primary);
   width: 4rem;

@@ -46,8 +46,8 @@ export class HeaderLogo extends Component {
           <GlitchText
             text={'Devin Valko'}
             pattern={pattern}
-            blockStyle={'glitch-text'}
-            textStyle={'glitch-text-letter'}
+            textStyle={'glitch-text'}
+            charStyle={'glitch-text-letter'}
           />
           <div className="logo-text-glow" />
         </div>
