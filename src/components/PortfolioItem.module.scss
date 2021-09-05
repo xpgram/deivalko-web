@@ -91,6 +91,10 @@ $standardWidth: 1rem;
 .body {
   position: relative;
   width: 100%;
+  max-width: 100rem;
+  margin: 0 auto;
+
+  background: color.adjust(#242024, $lightness: 5%);
 
   display: flex;
   justify-content: center;
@@ -118,7 +122,6 @@ $standardWidth: 1rem;
   font-size: 1.5rem;
 
   box-shadow: 1.5rem 0 1.5rem -1.5rem #0008;
-  background: color.adjust(#242024, $lightness: 5%);
 
   overflow: hidden;
 }
