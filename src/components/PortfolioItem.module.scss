@@ -64,14 +64,16 @@ $standardWidth: 1rem;
 }
 
 .titleWord {
-  display: inline-block;
+  display: block;
 }
 
 .titleLetters {
   color: var(--text-primary);
+
   width: 4rem;
-  height: 5rem;
+  height: 3rem;
   font-size: 4rem;
+  line-height: 6rem;  // Fixes weird jumping around
   font-weight: 600;
 }
 
