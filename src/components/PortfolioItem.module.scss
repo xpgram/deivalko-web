@@ -1,5 +1,7 @@
 @use 'sass:color';
 
+$smallScreenWidth: 45rem;
+
 $standardWidth: 1rem;
 
 .block {
@@ -67,14 +69,23 @@ $standardWidth: 1rem;
   display: block;
 }
 
+@mixin headerText($size) {
+  margin-top: -$size/4;
+  width: $size;
+  height: $size;
+  font-size: $size;
+  line-height: $size*1.8; // Fixes weird jumping around
+  font-weight: 600;
+}
+
 .titleLetters {
   color: var(--text-primary);
 
-  width: 4rem;
-  height: 3rem;
-  font-size: 4rem;
-  line-height: 6rem;  // Fixes weird jumping around
-  font-weight: 600;
+  @include headerText(3.5rem);
+
+  @media (max-width: $smallScreenWidth) {
+    @include headerText(2.8rem);
+  }
 }
 
 .body {
