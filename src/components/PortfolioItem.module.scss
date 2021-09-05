@@ -104,7 +104,9 @@ $standardWidth: 1rem;
 .main {
   display: inline-block;
 
-  margin: 1rem 2rem 0 1rem;
+  margin-left: -.1rem;
+  margin-right: 2rem;
+  padding: 1rem;
 
   width: calc(100% - 22rem);
   min-width: 40ch;        // TODO Add a media break here so that {width: calc(100% - 10ch);} instead.
@@ -114,6 +116,9 @@ $standardWidth: 1rem;
 
   color: var(--text-primary);
   font-size: 1.5rem;
+
+  box-shadow: 1.5rem 0 1.5rem -1.5rem #0008;
+  background: color.adjust(#242024, $lightness: 5%);
 
   overflow: hidden;
 }
@@ -170,9 +175,9 @@ $standardWidth: 1rem;
 
 .sidebar {
   width: 10ch;
-  min-height: 9rem;
+  // min-height: 9rem;
 
-  $barWidth: .3rem;
+  $barWidth: .25rem;
   border-left: $barWidth solid #A79;
   padding-left: $barWidth;
 

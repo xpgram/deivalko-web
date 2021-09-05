@@ -9,7 +9,12 @@ $gap-width: 3rem;
 }
 
 .container {
-  background: color.adjust(#242024, $lightness: 5%);
+  $dark: #242024;
+  $light: color.adjust(#242024, $lightness: 5%);
+
+  // background: $dark; 
+  background: linear-gradient(to right, $dark 50%, $light 50%, $light 75%, $dark 75%);
+  // TODO Hm...
 
   display: flex;
 	flex-direction: row;
