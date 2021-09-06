@@ -129,10 +129,11 @@ export class GlitchText extends Component {
     const charsList = text;
     const charsPossible = charsList + extendedCharset;
 
-    // TODO Trailing ' ' char on last word
+    // TODO Extract list processing to constructor
     let animStateCount = -1;
     const elements = words.map( (word, widx) => {
-      const letters = (word + ' ')
+      const addSpace = Boolean(widx !== words.length - 1);
+      const letters = (word + (addSpace ? ' ' : ''))
         .split('')
         .map( (char, lidx) => {
           animStateCount++;
