@@ -85,7 +85,7 @@ export class PortfolioItem extends Component {
                       href={this.props.linkDemo}
                       target="_blank"
                     >
-                      VIEW
+                      view
                     </a>
                   }
                   {this.props.linkSource &&
@@ -94,7 +94,7 @@ export class PortfolioItem extends Component {
                       href={this.props.linkSource}
                       target="_blank"
                     >
-                      PROJ
+                      git
                     </a>
                   }
 

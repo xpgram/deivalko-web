@@ -2,7 +2,14 @@
 
 $smallScreenWidth: 45rem;
 
-$standardWidth: 1rem;
+$previewPaneShadow: .4rem;
+
+// TODO media break for small screens: description | project links
+// TODO Extract common globals: max width = 100rem, media break = 45rem, etc.
+// TODO Break this large-ass scss file (and js component) into smaller components?
+//   The point would be code-reuse, but... will I reuse project-link styles? I mean, really?
+
+// TODO media break should also force hamburger nav-menu; but that's handled in the Navbar component.
 
 .block {
   margin: 0;
@@ -13,12 +20,15 @@ $standardWidth: 1rem;
 .preview {
   position: relative;
   width: 100%;
-  max-height: 24rem;
+  height: 24rem;
+  @media (max-width: $smallScreenWidth) {
+    height: 20rem;
+  }
 
   z-index: 10;
   overflow: hidden;
 
-  $shadow: .4rem;
+  $shadow: $previewPaneShadow;
   box-shadow: 0 $shadow*2/3 $shadow $shadow/4 #0006;
 
   
@@ -58,8 +68,8 @@ $standardWidth: 1rem;
   min-height: 100%;
 
   position: relative;
-  transform: translate(-50%, -25%); // TODO This won't center for some reason.
-  top: 0%;                          // Like, top here does *nothing*.
+  transform: translate(-50%, -50%);
+  top: 50%;   // Not sure why top does nothing, but  w h a t e v e r .
   left: 50%;
 
   filter: brightness(50%) saturate(20%);
@@ -105,7 +115,7 @@ $standardWidth: 1rem;
   width: $size;
   height: $size;
   font-size: $size;
-  line-height: $size*1.8; // Fixes weird jumping around
+  line-height: $size*1.8; // Fixes weird jittering, probably of non-standard character set.
   font-weight: 600;
 }
 
@@ -147,8 +157,6 @@ $standardWidth: 1rem;
   width: calc(100% - 22rem);
   min-width: 40ch;        // TODO Add a media break here so that {width: calc(100% - 10ch);} instead.
   max-width: 60ch;          
-    // TODO What to do with that extra space on the right side?
-    // TODO Further, when sidebar and navbar collide, the latter should turn into a hamburer menu or something.
 
   color: var(--text-primary);
   font-size: 1.5rem;
@@ -156,6 +164,11 @@ $standardWidth: 1rem;
   box-shadow: 1.75rem .75rem 1.5rem -1.75rem #0008;
 
   overflow: hidden;
+
+  @media (max-width: $smallScreenWidth) {
+    width: calc(100% - 10ch);
+    min-width: 0;
+  }
 }
 
 .technologies {
@@ -199,6 +212,10 @@ $standardWidth: 1rem;
   height: .4rem;
   background: #A79;
   border-radius: 1rem;
+
+  @media (max-width: $smallScreenWidth) {
+    width: 12ch;
+  }
 }
 
 .sidebarWrapper {
@@ -210,7 +227,6 @@ $standardWidth: 1rem;
 
 .sidebar {
   width: 10ch;
-  // min-height: 9rem;
 
   $barWidth: .25rem;
   border-left: $barWidth solid #A79;
@@ -227,7 +243,7 @@ $standardWidth: 1rem;
     width: 100%;
     height: 1rem;
 
-    $shadow: .4rem;
+    $shadow: $previewPaneShadow;
     box-shadow: 0 0rem $shadow $shadow/2 #0008;
   }
 }
@@ -236,10 +252,13 @@ $standardWidth: 1rem;
   display: block;
 
   margin: 0;
-  padding: .5rem .5rem;
+  padding: 0;
+  text-align: center;
+
+  $height: 2.5rem;
 
   width: 100%;
-  height: 2.5rem;
+  height: $height;
   background: #A79;
 
   outline: none;
@@ -249,7 +268,8 @@ $standardWidth: 1rem;
   font-size: 1.5rem;
   font-weight: 500;
   text-decoration: none;
-  line-height: 1.8rem;
+  text-transform: uppercase;
+  line-height: $height;
   letter-spacing: .2rem;
   
   &:hover, &:focus {
@@ -257,8 +277,8 @@ $standardWidth: 1rem;
   }
 
   &:first-child {
-    height: 3rem;
-    padding-top: 1rem;
+    height: $height + .5rem;
+    line-height: $height + 1rem;
   }
 
   &:last-child {
