@@ -20,6 +20,37 @@ $standardWidth: 1rem;
 
   $shadow: .4rem;
   box-shadow: 0 $shadow*2/3 $shadow $shadow/4 #0006;
+
+  
+  // Letter box controls
+  $LB-Margin: 10rem;
+  $LB-transitionWidth: 4rem;
+  $LB-opacity: .3;
+
+  @mixin letterBoxBase {
+    content: '';
+
+    height: 100%;
+    position: absolute;
+    top: 0;
+    z-index: var(--z-foreground);
+    opacity: $LB-opacity;
+
+    background: #000;
+    box-shadow: 0 0 $LB-transitionWidth $LB-transitionWidth #000;
+  }
+
+  &::before {
+    @include letterBoxBase;
+    width: calc(50% - 50rem);
+    left: -$LB-Margin;
+  }
+
+  &::after {
+    @include letterBoxBase;
+    width: calc(50% - 50rem);
+    right: -$LB-Margin;
+  }
 }
 
 .previewImage {
