@@ -1,3 +1,4 @@
+@use "sass:color";
 
 $palette: (
   text: (
@@ -5,6 +6,11 @@ $palette: (
     base: #bbb,
     light: #ddd
   ),
+
+  primary: #A79,
+  secondary: #000,
+  background: #242024,
+
   accent: (
     dark: #535,
     base: #757,

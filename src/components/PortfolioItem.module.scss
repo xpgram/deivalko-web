@@ -11,6 +11,28 @@ $previewPaneShadow: .4rem;
 
 // TODO media break should also force hamburger nav-menu; but that's handled in the Navbar component.
 
+// TODO New Typefaces
+// Nav Logo:
+//   Rubik 300
+//   Work Sans 400
+//   Montserrat 400 (Good fallback 'cause I think it's pre-installed on most machines)
+//   Cairo 300
+//   Quicksand 400
+// Portolio Title:
+//   Josefin 600 Italic
+//   Cantarell Bold
+//   Titillium Web 600
+//   Montserrat 500/600 Reg/Italic
+//   Teko 400/500 (Kinda Star Wars-y)
+//   Rubik 400 Reg/Italic (Heavier weights might be too sharp)
+//   Quicksand 500  (600 is too round/"fun")
+//   Mulish 400/600 Italic
+//   Chakra Petch 500 Reg/Italic
+//   Orbitron 500
+//   Encode Sans 500
+//   Saira Condensed 500
+//   Play 400/700
+
 .block {
   margin: 0;
   padding: 0;
@@ -166,8 +188,10 @@ $previewPaneShadow: .4rem;
   overflow: hidden;
 
   @media (max-width: $smallScreenWidth) {
-    width: calc(100% - 10ch);
+    width: calc(100% - 9rem);
     min-width: 0;
+    font-size: 1.25rem;
+    line-height: 2rem;
   }
 }
 
@@ -271,6 +295,8 @@ $previewPaneShadow: .4rem;
   text-transform: uppercase;
   line-height: $height;
   letter-spacing: .2rem;
+
+  user-select: none;
   
   &:hover, &:focus {
     background: color.adjust(#A79, $lightness: 12%, $saturation: 12%);
