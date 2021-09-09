@@ -157,7 +157,9 @@ $previewPaneShadow: .4rem;
   max-width: 100rem;
   margin: 0 auto;
 
-  background: color.adjust(#242024, $lightness: 5%);
+  $light: color.adjust(#242024, $lightness: 5%);
+  $dark: #242024;
+  background: linear-gradient(to bottom, #{$light} 50%, $dark);
 
   display: flex;
   justify-content: center;
