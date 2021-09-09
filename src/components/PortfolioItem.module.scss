@@ -285,7 +285,12 @@ $previewPaneShadow: .4rem;
 
   width: 100%;
   height: $height;
-  background: #A79;
+
+  // background color
+  $bg-color: #A79;
+  $light: color.adjust($bg-color, $lightness: 2.5%);
+  $dark: color.adjust($bg-color, $lightness: -2.5%);
+  background: linear-gradient(to bottom, #{$light} 95%, #{$dark});
 
   outline: none;
   border: none;
@@ -301,7 +306,10 @@ $previewPaneShadow: .4rem;
   user-select: none;
   
   &:hover, &:focus {
-    background: color.adjust(#A79, $lightness: 12%, $saturation: 12%);
+    // background color
+    $bg-color: color.adjust($bg-color, $lightness: 8%, $saturation: 8%);
+    $light: color.adjust($bg-color, $lightness: 2.5%);
+    background: linear-gradient(to bottom, #{$light} 95%, #{$dark});
   }
 
   &:first-child {
