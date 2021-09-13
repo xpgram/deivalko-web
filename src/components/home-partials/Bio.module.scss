@@ -1,7 +1,15 @@
+@use 'sass:color';
 
 .wrapper {
   padding: 5rem 0;
-  background: var(--bg-color);
+
+  // background: var(--bg-color);
+
+  // TODO Wtf. Is this better?
+  $light: color.adjust(#242024, $lightness: 5%);
+  $shadow: color.adjust(#242024, $lightness: 2.5%);
+  $dark: color.adjust(#242024, $lightness: 0%);
+  background: linear-gradient(to bottom, $shadow, $light 10%, $light 75%, $dark);
 }
 
 .attentionGrabber {
