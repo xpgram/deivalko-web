@@ -1,111 +1,117 @@
-import { Component } from "react";
+import { useState, useRef, useEffect } from "react";
 import { GlitchText } from "./GlitchText";
 
 import styles from "./PortfolioItem.module.scss";
 
-export class PortfolioItem extends Component {
+// TODO Rewrite in functional style; use hooks so I can add onView effects; I don't know how in class-component style; neither does Google, ffs.
 
-  constructor(props) {
-    super(props);
-    this.state = {
-      hover: false
-    }
+export function PortfolioItem({ image, linkDemo, linkSource, technologies, title, description }) {
+// export function PortfolioItem(props) {
+  const [visible, setVisible] = useState(false);
 
-    this._image = (this.props.image)
-      ? require(`../resources/img/portfolio/${this.props.image}`).default
-      : '';
+  const domRef = useRef();
 
-    // TODO Styles fail miserably if no image exists or can be found.
-  }
+  // Setup on-view effect trigger
+  useEffect( () => {
+    const observer = new IntersectionObserver( entries => {
+      if (entries[0].isIntersecting) {
+        setVisible(true);
+        observer.unobserve(domRef.current);
+      }
+    });
 
-  onMouseEnter = () => {
-    this.setState({hover: true});
-  }
+    const node = domRef.current;
+    observer.observe(node);
+    return () => observer.unobserve(node);
+  }, []);
 
-  onMouseLeave = () => {
-    this.setState({hover: false});
-  }
+  // Request banner image
+  const bannerImage = (image)
+    ? require(`../resources/img/portfolio/${image}`).default
+    : '';
+  // TODO styles fail miserably if bannerImage is null
 
-  render() {
+  // Show project link menu?
+  const showSidebar = (linkDemo || linkSource);
 
-    const technologies = this.props.technologies || [];
-    const technologyElems = technologies
-      .map( (word, idx) =>
-        <span
-          key={`tech_${idx}`}
-          className={styles.technologyWord}>
-            {word}
-        </span>
-      );
+  // List of technology words — extract to new component?
+  technologies =technologies || [];
+  const technologyElems = technologies.map( (word, idx) =>
+    <span
+      key={`tech_${idx}`}
+      className={styles.technologyWord}>
+        {word}
+    </span>
+  );
 
-    const showSidebarMenu = (this.props.linkDemo || this.props.linkSource);
 
-    return (
-      <div className={styles.block}>
+  return (
+    <div ref={domRef} className={styles.block}>
 
-        <div className={styles.preview}>
-          <img
-            className={styles.previewImage}
-            src={this._image}
-            alt={this.props.title}
+      <div className={styles.preview}>
+        <img
+          className={styles.previewImage}
+          src={bannerImage}
+          alt={title}
+        />
+        <div className={styles.gradientOverlay} />
+        <div className={styles.titleWrapper}>
+          <GlitchText
+            text={title + '_'}
+            pattern={visible ? 'blank-reveal' : 'blank'}
+            textStyle={styles.titleText}
+            wordStyle={styles.titleWord}
+            charStyle={styles.titleLetters}
           />
-          <div className={styles.gradientOverlay} />
-          <div className={styles.titleWrapper}>
-            <GlitchText
-              text={this.props.title + '_'}
-              pattern={'blank-reveal'}
-              textStyle={styles.titleText}
-              wordStyle={styles.titleWord}
-              charStyle={styles.titleLetters}
-            />
-          </div>
         </div>
-
-        <div className={styles.body}>
-          <div className={styles.mainWrapper}>
-
-            <div className={styles.main}>
-              <div className={styles.technologies}>
-                {technologyElems}
-              </div>
-              <div className={styles.description}>
-                {this.props.description}
-              </div>
-              <div className={styles.endbar} />
-            </div>
-
-            {showSidebarMenu &&
-              <div className={styles.sidebarWrapper}>
-                <div className={styles.sidebar}>
-
-                  {/* TODO Extract to component, and to button list before return */}
-                  {this.props.linkDemo &&
-                    <a
-                      className={styles.link}
-                      href={this.props.linkDemo}
-                      target="_blank"
-                    >
-                      view
-                    </a>
-                  }
-                  {this.props.linkSource &&
-                    <a
-                      className={styles.link}
-                      href={this.props.linkSource}
-                      target="_blank"
-                    >
-                      git
-                    </a>
-                  }
-
-                </div>
-              </div>
-            }
-
-          </div>
-        </div>
-
       </div>
-    );
-  }
+
+      <div className={styles.body}>
+        <div className={styles.mainWrapper}>
+
+          <div className={styles.main}>
+            <div className={styles.technologies}>
+              {technologyElems}
+            </div>
+            <div className={styles.description}>
+              {description}
+            </div>
+            <div className={styles.endbar} />
+          </div>
+
+          {showSidebar &&
+            <div className={styles.sidebarWrapper}>
+              <div className={styles.sidebar}>
+
+                {/* TODO Extract to component, and to button list before return */}
+                {linkDemo &&
+                  <a
+                    className={styles.link}
+                    href={linkDemo}
+                    target="_blank"
+                    rel="noreferrer"
+                  >
+                    view
+                  </a>
+                }
+                {linkSource &&
+                  <a
+                    className={styles.link}
+                    href={linkSource}
+                    target="_blank"
+                    rel="noreferrer"
+                  >
+                    git
+                  </a>
+                }
+
+              </div>
+            </div>
+          }
+
+        </div>
+      </div>
+
+    </div>
+  );
 }
