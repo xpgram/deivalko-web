@@ -54,11 +54,13 @@ export class GlitchText extends Component {
   }
 
   getInitialState = () => {
-    // TODO Extract
     const key = this.props.pattern || 'show';
     const pattern = AnimationPatterns[key] || AnimationPatterns['show'];
+    const timerStep = (this.state)
+      ? this.state.timerStep % this._phaseInterval
+      : 0;
     return {
-      timerStep: 0,
+      timerStep: timerStep,
       maxTimeStep: this._phaseInterval * pattern.length,
       pattern: pattern,
       animStates: new Array(this._length).fill(pattern[0]),
@@ -67,13 +69,7 @@ export class GlitchText extends Component {
 
   componentDidUpdate(prevProps) {
     if (prevProps.pattern !== this.props.pattern) {
-      // TODO Extract
-      const key = this.props.pattern || 'reveal';
-      const pattern = AnimationPatterns[key] || AnimationPatterns['reveal'];
-      this.setState({
-        timerStep: this.state.timerStep % this._phaseInterval,
-        pattern: pattern,
-      });
+      this.setState( this.getInitialState() );
       this.start();
     }
   }
@@ -150,7 +146,7 @@ export class GlitchText extends Component {
         }
       );
       return (
-        <span className={this.props.wordStyle}>
+        <span key={`gw_${widx}`} className={this.props.wordStyle}>
           {letters}
         </span>
       )
