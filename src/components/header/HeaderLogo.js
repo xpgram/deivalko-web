@@ -1,7 +1,6 @@
 import "./HeaderLogo.scss";
 import { Component } from "react";
 import logo from "../../resources/img/dV_logo.png";
-import { GlitchName } from "./GlitchName";
 import { GlitchText } from "../GlitchText";
 
 export class HeaderLogo extends Component {
