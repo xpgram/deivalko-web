@@ -59,11 +59,16 @@ export class GlitchText extends Component {
     const timerStep = (this.state)
       ? this.state.timerStep % this._phaseInterval
       : 0;
+    const maxTimeStep = this._phaseInterval * pattern.length;
+    const animStates = (this.state)
+      ? this.state.animStates
+      : new Array(this._length).fill(pattern[0]);
+
     return {
       timerStep: timerStep,
-      maxTimeStep: this._phaseInterval * pattern.length,
+      maxTimeStep: maxTimeStep,
       pattern: pattern,
-      animStates: new Array(this._length).fill(pattern[0]),
+      animStates: animStates,
     }
   }
 

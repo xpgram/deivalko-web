@@ -1,0 +1,80 @@
+@use 'sass:list';
+
+//// Typeface descriptions ////
+
+$base-url: '../resources/typefaces/';
+
+@font-face {
+  font-family: 'Nunito Sans';
+  src: url($base-url + 'NunitoSans-Regular.ttf');
+}
+@font-face {
+  font-family: 'Nunito Sans';
+  src: url($base-url + 'NunitoSans-Italic.ttf');
+  font-style: italic;
+}
+@font-face {
+  font-family: 'Nunito Sans';
+  src: url($base-url + 'NunitoSans-Bold.ttf');
+  font-weight: bold;
+}
+@font-face {
+  font-family: 'Nunito Sans';
+  src: url($base-url + 'NunitoSans-BoldItalic.ttf');
+  font-weight: bold;
+  font-style: italic;
+}
+
+@font-face {
+  font-family: 'Play';
+  src: url($base-url + 'Play-Regular.ttf');
+}
+
+@font-face {
+  font-family: 'Chakra Petch';
+  src: url($base-url + 'ChakraPetch-Regular.ttf');
+}
+
+@font-face {
+  font-family: 'Titillium Web';
+  src: url($base-url + 'TitilliumWeb-Regular.ttf');
+}
+@font-face {
+  font-family: 'Cairo';
+  src: url($base-url + 'Cairo-Regular.ttf');
+}
+@font-face {
+  font-family: 'Montserrat';
+  src: url($base-url + 'Montserrat-Regular.ttf');
+}
+
+//// Get access ////
+
+$default-family: (-apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+                  'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+                  sans-serif);
+
+@function extend-family($typefaces...) {
+  @return list.append($typefaces, $default-family, $separator: comma);
+}
+
+$families: (
+  logo: extend-family('Montserrat', 'Nunito Sans'),
+  title: extend-family('Chakra Petch'),
+  button-link: extend-family('Play'),
+  extra-detail: extend-family('Chakra Petch'),
+  body: extend-family('Cairo', 'Titillium Web'),
+  code: extend-family('source-code-pro', 'Menlo', 'Monaco', 'Consolas', 'Courier New', 'monospace'),
+);
+
+/**
+ * Given the name of a registered font family, returns it. Else returns null.
+ */
+@function get($typeface) {
+  @if not map-has-key($families, $typeface) {
+    @warn "unknown typeface `#{$selector}` of `#{$container}`";
+    @return null;
+  }
+
+  @return map-get($families, $typeface);
+}

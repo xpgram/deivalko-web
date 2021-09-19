@@ -1,3 +1,4 @@
+@use '../../styles/font-families';
 
 $font-size: 1.5rem;
 $letter-spacing: .1rem;
@@ -48,11 +49,12 @@ $anim-time: .3s;
 .text {
   pointer-events: all;    // TODO Because of the light effect, menu hangs over content quite a bit.
   padding: 0.5rem 1.2rem;
-  font: 'Nunito Sans';    // TODO Firefox; why? Dun evn work.
+
+  color: #CCC;
+  font-family: font-families.get('button-link');
   font-size: $font-size;
   letter-spacing: $letter-spacing;
 
-  color: #CCC;
   background-color: transparent;
 
   border: none;
