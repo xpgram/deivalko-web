@@ -66,10 +66,13 @@
 }
 
 .glitch-text-letter {
-  width: 1.8rem;
+  $text-size: 1.6rem;
+
+  width: $text-size;
 
   font-family: font-families.get('logo');
-  font-size: 1.8rem;
+  font-size: $text-size;
+  font-weight: 400;
   line-height: 1.5;
   color: var(--text-primary);
 }

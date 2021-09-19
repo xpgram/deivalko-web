@@ -1,4 +1,5 @@
 @use "sass:color";
+@use "../../styles/font-families";
 
 .background {
   box-shadow: inset 0 .2rem .4rem 0 #000;
@@ -15,8 +16,9 @@
   width: 100%;
   max-width: 100rem;
 
+  font-family: font-families.get('logo');
   font-size: 1rem;
-  letter-spacing: .15rem;
+  letter-spacing: .2rem;
   text-align: right;
   color: var(--text-primary);
 }
