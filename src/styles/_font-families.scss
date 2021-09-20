@@ -59,6 +59,7 @@ $default-family: (-apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxyg
 }
 
 $families: (
+  // TODO Can I get Montserrat Condensed? It's a little wide.
   logo: extend-family('Montserrat', 'Nunito Sans'),
   title: extend-family('Chakra Petch'),
   button-link: extend-family('Play'),

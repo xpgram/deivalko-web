@@ -1,3 +1,4 @@
+@use 'sass:color';
 @use '../../styles/font-families';
 
 $font-size: 1.5rem;
@@ -40,7 +41,21 @@ $anim-time: .3s;
   top: 0;
   right: 0;
 
-  background: linear-gradient(to left, #B8A, transparent);
+  $base-color: #B8A;
+  $base-width: 2%;
+  $base-light: 12%;
+  $lift: .3;
+
+  // ↓ This looks pretty good. Turn this into an intelligible function or something.
+
+  background: linear-gradient(to left,
+    color.adjust( color.scale($base-color, $whiteness: $base-light/1 ), $alpha:  0                          ),
+    color.adjust( color.scale($base-color, $whiteness: $base-light/2 ), $alpha: (-1 + (1/2) ) * (1 - $lift) ) $base-width  ,
+    color.adjust( color.scale($base-color, $whiteness: $base-light/4 ), $alpha: (-1 + (1/4) ) * (1 - $lift) ) $base-width*2,
+    color.adjust( color.scale($base-color, $whiteness: $base-light/8 ), $alpha: (-1 + (1/8) ) * (1 - $lift) ) $base-width*4,
+    color.adjust( color.scale($base-color, $whiteness: $base-light/16), $alpha: (-1 + (1/16)) * (1 - $lift) ) $base-width*8,
+    color.adjust( color.scale($base-color, $whiteness: $base-light/32), $alpha: (-1 + (1/32)) * (1 - $lift) ) $base-width*16,
+    transparent);
 
   transition: opacity $anim-time/2 ease;
   opacity: .6;
