@@ -44,6 +44,11 @@ export function PortfolioItem({ image, linkDemo, linkSource, technologies, title
     </span>
   );
 
+  // Reintroduce text formatting.
+  // TODO Look into interpretting strings as HTML; also, is that dangerous?
+  // TODO What about markdown?
+  const bodyContent = description.split('\n').map( p => <p>{p}</p>);
+
 
   return (
     <div ref={domRef} className={styles.block}>
@@ -74,7 +79,7 @@ export function PortfolioItem({ image, linkDemo, linkSource, technologies, title
               {technologyElems}
             </div>
             <div className={styles.description}>
-              {description}
+              {bodyContent}
             </div>
             <div className={styles.endbar} />
           </div>

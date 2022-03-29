@@ -161,10 +161,10 @@ $previewPaneShadow: .4rem;
 
   width: calc(100% - 22rem);
   min-width: 40ch;        // TODO Add a media break here so that {width: calc(100% - 10ch);} instead.
-  max-width: 60ch;          
+  max-width: 70ch;          
 
   color: var(--text-primary);
-  font-size: 1.5rem;
+  font-size: 1.3rem;
 
   box-shadow: 1.75rem .75rem 1.5rem -1.75rem #0008;
 
@@ -179,7 +179,7 @@ $previewPaneShadow: .4rem;
 }
 
 .technologies {
-  padding-left: .8rem;
+  padding-left: 1.0rem;
   opacity: .5;
 
   font-size: 1.1rem;
@@ -208,7 +208,14 @@ $previewPaneShadow: .4rem;
 }
 
 .description {
-  margin-top: .5rem;
+  // I changed to be more readable, but now it looks kind blog-site and less art-site, feel me?
+  margin-top: .60rem;
+  margin-bottom: 1.75rem;
+
+  p {
+    margin-bottom: 1.0rem;
+    margin-top: 0rem;
+  }
 }
 
 .endbar {

@@ -3,35 +3,25 @@ import { PortfolioItem } from "../PortfolioItem";
 
 import styles from "./Portfolio.module.scss";
 
+import portfolioItems from "../../resources/content/portfolio-items.json";
+
 export class Portfolio extends Component {
   render() {
+
+    const portfolio = portfolioItems.map( data =>
+      <PortfolioItem
+        title={data.title}
+        image={data.image}
+        technologies={data.technologies}
+        description={data.description}
+        linkDemo={data.linkDemo}
+        linkSource={data.linkSource}
+      />)
+
     return (
       <div className={styles.background}>
         <div className={styles.container}>
-          <PortfolioItem
-            title="Advance Wars Clone"
-            image="advance-wars-clone.png"
-            technologies={['PixiJs', 'Typescript']}
-            description="Lorem ipsum dolor sit amet consectetur adipisicing elit. Dignissimos similique qui sunt exercitationem commodi sint illo velit ea voluptas, maxime aspernatur enim veniam, accusamus modi sed voluptatibus quia? Accusamus rem illo corporis dolorum recusandae excepturi reiciendis a omnis rerum qui."
-            linkDemo="https://xpgram.github.io/armed-revolt/game.html"
-            linkSource="https://github.com/xpgram/advance-wars"
-          />
-          <PortfolioItem
-            title="Movie.Web"
-            image="movie-web-1.png"
-            technologies={['React', 'Django', 'Heroku']}
-            description="Lorem ipsum, dolor sit amet consectetur adipisicing elit. Provident quod, sequi odit dolores corrupti quas animi rerum ex in, laudantium itaque eum labore nostrum voluptatem mollitia. Iusto omnis totam dolor ipsa cupiditate quaerat eius suscipit delectus assumenda distinctio! Ab velit necessitatibus assumenda iusto consectetur mollitia, similique molestias quo odio provident perferendis dicta, maiores quibusdam enim quasi, accusamus modi ad deserunt."
-            linkDemo="http://xpg-movie-api-web.herokuapp.com"
-            linkSource="https://github.com/xpgram/movie-api-web"
-          />
-          <PortfolioItem
-            title="Budgetboy"
-            image="budgetboy.png"
-            technologies={['Python']}
-            description="Lorem ipsum dolor sit amet consectetur adipisicing elit. Est atque ab tempora, aspernatur amet, sequi maxime, velit voluptatum fugiat itaque consequatur nemo maiores sapiente quis."
-            linkDemo=""
-            linkSource="https://github.com/xpgram/budgetboy"
-          />
+          {portfolio}
         </div>
       </div>
     )

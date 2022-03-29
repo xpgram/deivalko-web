@@ -1,23 +1,30 @@
 
 [
   {
-    "link": "",
-    "name": "Advance Wars Clone",
+    "title": "Advance Wars Clone",
     "image": "advance-wars-clone.png",
     "video": "",
-    "description": "a;weoibrna ;enwa vlkjena;l newasl;vnera",
+    "technologies": ["PixiJs", "Typescript", "GLSL"],
+    "linkDemo": "https://xpgram.github.io/armed-revolt/game.html",
+    "linkSource": "https://github.com/xpgram/advance-wars",
+    "description": "An in-browser clone of \"Advance Wars: Days of Ruin\" (2008).\n\nThe primary gameplay is somewhere around 70% complete. The map and tileset system is capable of handling nearly any configuration. Almost all troop-types and actions are fully implemented, with accompanying animations. And the troop-instruction system is primed and ready for AI and online player opponents (when I implement them)."
   },
   {
-    "link": "",
-    "name": "Advance Wars Clone",
-    "image": "advance-wars-clone.png",
-    "description": "a;weoibrna ;enwa vlkjena;l newasl;vnera",
-  },
-  {
-    "link": "",
-    "name": "Advance Wars Clone",
-    "image": "advance-wars-clone.png",
+    "title": "Movie.Web",
+    "image": "movie-web-1.png",
     "video": "",
-    "description": "a;weoibrna ;enwa vlkjena;l newasl;vnera",
+    "technologies": ["React", "Django", "Heroku"],
+    "linkDemo": "http://xpg-movie-api-web.herokuapp.com",
+    "linkSource": "https://github.com/xpgram/movie-api-web",
+    "description": "Lorem ipsum, dolor sit amet consectetur adipisicing elit. Provident quod, sequi odit dolores corrupti quas animi rerum ex in, laudantium itaque eum labore nostrum voluptatem mollitia. Iusto omnis totam dolor ipsa cupiditate quaerat eius suscipit delectus assumenda distinctio! Ab velit necessitatibus assumenda iusto consectetur mollitia, similique molestias quo odio provident perferendis dicta, maiores quibusdam enim quasi, accusamus modi ad deserunt."
+  },
+  {
+    "title": "Budgetboy",
+    "image": "budgetboy.png",
+    "video": "",
+    "technologies": ["Python"],
+    "linkDemo": "",
+    "linkSource": "https://github.com/xpgram/budgetboy",
+    "description": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Est atque ab tempora, aspernatur amet, sequi maxime, velit voluptatum fugiat itaque consequatur nemo maiores sapiente quis."
   }
 ]
