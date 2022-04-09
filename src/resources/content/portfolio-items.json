@@ -7,7 +7,7 @@
     "technologies": ["PixiJs", "Typescript", "GLSL"],
     "linkDemo": "https://xpgram.github.io/armed-revolt/game.html",
     "linkSource": "https://github.com/xpgram/advance-wars",
-    "description": "An in-browser clone of \"Advance Wars: Days of Ruin\" (2008).\n\nThe primary gameplay is somewhere around 70% complete. The map and tileset system is capable of handling nearly any configuration. Almost all troop-types and actions are fully implemented, with accompanying animations. And the troop-instruction system is primed and ready for AI and online player opponents (when I implement them)."
+    "description": "An in-browser clone of \"Advance Wars: Days of Ruin\" (2008).\nThe primary gameplay is somewhere around 70% complete. The map and tileset system is capable of handling nearly any configuration. Almost all troop-types and actions are fully implemented, with accompanying animations. And the troop-instruction system is primed and ready for AI and online player opponents (when I implement them)."
   },
   {
     "title": "Movie.Web",
@@ -16,7 +16,7 @@
     "technologies": ["React", "Django", "Heroku"],
     "linkDemo": "http://xpg-movie-api-web.herokuapp.com",
     "linkSource": "https://github.com/xpgram/movie-api-web",
-    "description": "Lorem ipsum, dolor sit amet consectetur adipisicing elit. Provident quod, sequi odit dolores corrupti quas animi rerum ex in, laudantium itaque eum labore nostrum voluptatem mollitia. Iusto omnis totam dolor ipsa cupiditate quaerat eius suscipit delectus assumenda distinctio! Ab velit necessitatibus assumenda iusto consectetur mollitia, similique molestias quo odio provident perferendis dicta, maiores quibusdam enim quasi, accusamus modi ad deserunt."
+    "description": "A website which queries OMDb for movie search results and presents them. Also has a rudimentary user voting system. If you intend to view it, please allow Heroku time to spin up the servers; I haven't paid for hosting.\nThe site was built to demonstrate website design and construction as well as third party API integration."
   },
   {
     "title": "Budgetboy",
@@ -25,6 +25,6 @@
     "technologies": ["Python"],
     "linkDemo": "",
     "linkSource": "https://github.com/xpgram/budgetboy",
-    "description": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Est atque ab tempora, aspernatur amet, sequi maxime, velit voluptatum fugiat itaque consequatur nemo maiores sapiente quis."
+    "description": "A script I wrote to keep track of my budget for me. If you tell it when your bills are, it'll tell you when they're due forever.\nIt's an estimation tool, it doesn't integrate with anything. But it is quite useful when trying to figure out how much money you should theoretically have 6 months from now."
   }
 ]
